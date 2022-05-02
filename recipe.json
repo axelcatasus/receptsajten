@@ -1,0 +1,117 @@
+[
+		{
+				"title": "Löksoppa",
+				"description": "Bajsa mer med soppa",
+				"imageUrl": "Kissen.jpg",
+				"timeinMins": 120,
+				"ratings": [4,2,1,5,4,5,3,2,2,3,1],
+				"category": ["Soppa", "Vegetarisk", "Billig", "MR UMAMI"],
+				"ingredients":
+						[
+								{
+										"ingredient": "Lök",
+										"amount": 12,
+										"unit": "st"
+								},
+								{
+										"ingredient": "Hönsbuljong",
+										"amount": 2,
+										"unit": "liter"
+								},
+								{
+										"ingredient": "Msg",
+										"amount":1,
+										"unit":"hg"
+
+								}
+						],
+				"instructions":
+						[
+								{
+										"instruction":"Skala lök och soppa",
+										"prio": 1
+								},
+								{
+										"instruction":"Blanda ihop",
+										"prio":2
+								},
+								{
+										"instruction":"Servera",
+										"prio":3
+								}
+						],
+				"comments":
+						[
+								{
+										"comment": "Löksoppa är en klassisk rätt",
+										"name": "Kalle"
+								},
+								{
+										"comment": "Löksoppa är inte alls klassisk rätt, Kalle",
+										"name": "Sven"
+								},
+								{
+										"comment": "Löksoppa är helt okej",
+										"name": "Lizett"
+								}
+						]
+				},
+{
+		"title": "Köttbullar",
+		"description": "Köttbullar med köttfärs",
+		"imageUrl": "Köttbullar.jpg",
+		"timeinMins": 120,
+		"ratings": [4,2,1,5,4,5,3,2,2,3,1],
+		"category": ["Köttbullar", "Kött", "Enkel", "Monosodiumglutamat"],
+		"ingredients":
+				[
+						{
+								"ingredient": "Köttbullar",
+								"amount": 12,
+								"unit": "st"
+						},
+						{
+								"ingredient": "Köttfärs",
+								"amount": 2,
+								"unit": "liter"
+						},
+						{
+								"ingredient": "Msg",
+								"amount":1,
+								"unit":"hg"
+
+						}
+				],
+
+		"instructions":
+				[
+						{
+								"instruction":"Skala köttbullar och köttfärs",
+								"prio": 1
+						},
+						{
+								"instruction":"Blanda ihop",
+								"prio":2
+						},
+						{
+								"instruction":"Servera",
+								"prio":3
+						}
+				],
+		"comments":
+				[
+						{
+								"comment": "Köttbullar är en klassisk rätt",
+								"name": "Kalle"
+						},
+						{
+								"comment": "Köttbullar är inte alls klassisk rätt, Kalle",
+								"name": "Sven"
+						},
+						{
+								"comment": "Köttbullar är helt okej",
+								"name": "Lizett"
+						}
+				]
+}
+]
