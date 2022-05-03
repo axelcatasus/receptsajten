@@ -1,5 +1,7 @@
 import express, {Request, Response, json} from 'express';
-import { connect } from 'mongoose';
+import { connect } from 'mongoose'
+import cors from 'cors';
+
 
 import recipeRouter from './routes/recipe';
 import categoryRouter from './routes/category';
@@ -7,6 +9,7 @@ import categoryRouter from './routes/category';
 connect('mongodb://localhost:27017/receptsajten')
 
 const app = express()
+app.use(cors())
 app.use(json());
 const port = 3000
 

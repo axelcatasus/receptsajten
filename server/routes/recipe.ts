@@ -8,7 +8,7 @@ router.get('/', async (req: Request, res: Response) => {
     res.status(200).json(gottenRecipes);
 });
 
-router.get('/search:query', async (req: Request, res: Response) => {
+router.get('/search/:query', async (req: Request, res: Response) => {
     const gottenRecipes = await getRecipesBySearch(req.params.query);
     res.status(200).json(gottenRecipes);
 });
