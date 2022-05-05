@@ -1,8 +1,17 @@
 import RecipeModel from './models/recipeModel';
 
 export const getCategories = async () => {
-    const categories = await RecipeModel.find().distinct('category');
-    return categories;
+    // const categories = await RecipeModel.find().distinct('category');
+    // const categories = await RecipeModel.find({}, {category: 1, _id: 0})
+    // const categoriesArray = categories.map(category => category.category);
+    // return categoriesArray.flat();
+    const categories = await RecipeModel.aggregate([
+        { $match: {} },
+        { $unwind: '$category' },
+        { $group: { _id: '$category', count: { $sum: 1 } } },
+        { $sort: { count: -1 } }
+    ]);
+    return categories
 }
 
 export const GetRecipesByCategory = async (category: string) => {

@@ -5,6 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import SingleRecipe from './components/SingleRecipe';
+import CategoryView from './components/CategoryView';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -15,6 +16,7 @@ root.render(
     <Routes>
       <Route path="/" element={<App />} />
       <Route path="/recipes/:id" element={<SingleRecipe/>} />
+      <Route path="/category/:id" element={<CategoryView/>} />
     </Routes>
     {/* <App /> */}
     </BrowserRouter>

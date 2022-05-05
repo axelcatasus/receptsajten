@@ -1,11 +1,18 @@
 import ReactStars from 'react-stars'
 import React from 'react'
 import styled from 'styled-components'
+import { useState, useEffect } from 'react';
+import { postRating } from '../api/index';
  
 
-const ratingChanged = (newRating: any) => {
-  console.log(newRating)
-}
+interface StarsProps {
+    edit : boolean
+    recipeRatings : [number]
+    recipeId : string
+    }
+// const ratingChanged = ({newRating}: any) => {
+//   console.log(newRating)
+// }
 
 const calculateAverage = (rating : any) => {
     const sum = rating.reduce((a:number, b:number) => a + b);
@@ -19,17 +26,24 @@ const StyledStars = styled(ReactStars)`
 
 const starColor = '#ffc107';
 
-const Stars = ({rating}: any) => (
-    // <ReactStars
+const Stars = ({recipeRatings, recipeId, edit}: StarsProps) => {
+    const ratingChanged = (newRating: any) => {
+        console.log(newRating, recipeId)
+        postRating(recipeId, newRating);
+    }
+    return (
     <StyledStars
-        count={5}
-        value={calculateAverage(rating)}
-        onChange={ratingChanged}
-        size={40}
-        color2={starColor}
-        half={true}
+    count={5}
+    value={calculateAverage(recipeRatings)}
+    onChange={ratingChanged}
+    size={40}
+    edit={edit}
+    color2={starColor}
+    half={false}
     />
- )
+    )
+}
+ 
 
 
 export default Stars

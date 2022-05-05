@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
 import Stars from './Stars';
+// import { postRating } from '../api';
 
 const StyledRecipe = styled.div`
     display: grid;
@@ -46,7 +47,7 @@ const Recipe = () => {
                         {recipe.description}
                     </p>
                     <div>
-                    {recipe.ratings && <Stars rating={recipe.ratings} />}
+                    {recipe.ratings && <Stars edit={true} recipeId={recipe._id} recipeRatings={recipe.ratings} />}
                     <h3>{recipe.ratings && recipe.ingredients.length} Ingredienser | {recipe.timeinMins} Minuter</h3>
                     </div>
                 <img src={recipe.imageUrl} alt={recipe.title} />

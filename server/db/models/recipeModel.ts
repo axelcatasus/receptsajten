@@ -1,7 +1,7 @@
-import { Schema, model } from 'mongoose';
-import { Ingredient } from './types/ingredientType';
-import { Instruction } from './types/instructionType';
-import { Comment } from './types/commentType';
+import { Schema, model, Types } from 'mongoose';
+import { IngredientType } from './types/ingredientType';
+import { InstructionType } from './types/instructionType';
+import { CommentType } from './types/commentType';
 
 
 export interface RecipeType {
@@ -11,12 +11,9 @@ export interface RecipeType {
     timeinMins: number;
     ratings: [number];
     category: [string];
-    ingredients: any;
-    // ingredients: [Ingredient];
-    instructions: any;
-    // instructions: [Instruction];
-    comments: any;
-    // comments: [Comment];
+    ingredients: IngredientType[];
+    instructions: InstructionType[];
+    comments: CommentType[];
 }
 
 
@@ -46,23 +43,33 @@ const schema = new Schema<RecipeType>({
         required: true
     },
     ingredients: {
-        type: Array,
-        // type: [Ingredient],
+        type: [
+            {
+                ingredient: String,
+                amount: Number,
+                unit: String
+            }
+        ],
         required: true
     },
     instructions: {
-        type: Array,
-        // type: [Instruction],
+        type: [String],
         required: true
     },
     comments: {
-        type: Array,
-        // type: [Comment],
+        type: [
+            {
+                comment: String,
+                name: String,
+                createdAt: Date,
+            }
+        ],
         required: true
     }
 });
 
-const RecipeModel = model<RecipeType>('recipe', schema);
+const RecipeModel = model('recipe', schema);
+// const RecipeModel = model<RecipeType>('recipe', schema);
 
 export default RecipeModel
 

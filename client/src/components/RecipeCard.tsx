@@ -42,7 +42,7 @@ const RecipeCard = ({recipe}: any) => {
         </div>
         <div>
             <h2>{recipe.ingredients.length} Ingredienser | {recipe.timeinMins} Minuter</h2>
-            <Stars rating={recipe.ratings}/>
+            <Stars recipeRatings={recipe.ratings} recipeId={recipe._id} edit={false}/>
         </div>
         <Link to={`/recipes/${recipe._id}`}>
             <p>{recipe.comments.length} kommentarer<span className="material-symbols-outlined">comment</span></p>

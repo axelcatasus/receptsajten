@@ -16,3 +16,12 @@ export const getRecipesById = async (id: string) => {
     const recipe = await RecipeModel.findById(id);
     return recipe;
 }
+
+export const pushRatingById = async (id: string, rating: number) => {
+    const recipe = await RecipeModel.findByIdAndUpdate(id);
+    if(recipe) {
+    recipe.ratings.push(rating);
+    recipe.save();
+    return recipe;
+    }
+}

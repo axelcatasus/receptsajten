@@ -1,4 +1,4 @@
-export interface Instruction {
+export interface InstructionType {
     instruction: string;
-    prio: number;
+    prio?: number;
 }
