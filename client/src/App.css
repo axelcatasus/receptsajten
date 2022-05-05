@@ -1,4 +1,12 @@
-.app {
+.App {
   display: grid;
-  place-items: center
+  place-items: center;
+  background: linear-gradient(peru,lemonchiffon);
+}
+
+.header {
+  font-family: 'Noto Serif', serif;
+  font-weight: 700;
+  font-size: 5rem;
+  margin: 0;
 }

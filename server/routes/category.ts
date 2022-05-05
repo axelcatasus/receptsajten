@@ -13,10 +13,9 @@ router.get('/:category', async (req: Request, res: Response) => {
     res.status(200).json(gottenRecipes);
 });
 
-router.get('/:category/recipes/:query', async (req: Request, res: Response) => {
-    const gottenRecipes = await GetRecipesByCategoryAndSearch(req.params.category, req.params.query);
+router.get('/:category/recipes/:abc', async (req: Request, res: Response) => {
+    const gottenRecipes = await GetRecipesByCategoryAndSearch(req.params.category, req.params.abc);
     res.status(200).json(gottenRecipes);
 });
-
 
 export default router

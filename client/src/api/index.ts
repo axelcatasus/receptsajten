@@ -9,3 +9,12 @@ export async function fetchRecipes(){
       return error.response
     }
   }
+
+export async function fetchCategories(){
+  try{
+    const response = await axios.get('/category')
+    return response
+  } catch (error: any){
+    return error.response
+  }
+  }
