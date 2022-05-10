@@ -16,7 +16,6 @@ const CategoryView = () => {
     }, [])
     return (
         <div className="category-view">
-            <h1>HEJ</h1>
             {recipes.map((recipe: any) => <RecipeCard key={recipe._id} recipe={recipe}></RecipeCard> )}
         </div>
     )

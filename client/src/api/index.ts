@@ -29,7 +29,7 @@ export async function fetchCategories(){
 
 export async function postRating(recipeId: any, rating: any){
     try{
-      const response = await axios.put(`/recipes/${recipeId}`, {rating: rating})
+      const response = await axios.post(`/recipes/${recipeId}`, {rating: rating})
       return response
     } catch (error: any){
       return error.response

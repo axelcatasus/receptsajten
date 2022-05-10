@@ -37,9 +37,6 @@ router.get("/", async (req, res) => {
     }
   })
 
-
-
-
 router.get('/:recipeId', async (req: Request, res: Response) => {
     const gottenRecipe = await getRecipesById(req.params.recipeId);
     res.status(200).json(gottenRecipe);

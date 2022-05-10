@@ -4,7 +4,6 @@ import RecipeCard from "./RecipeCard";
 const RecipeList = () => {    
     const [query, setQuery] = useState("");
     const searchRecipes = async (query: string) => {
-        console.log("hej", query)
         const recipes = await fetch(`http://localhost:3000/recipes?search=${query}`)
         .then(res => res.json())
         setRecipes(recipes);

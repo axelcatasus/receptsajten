@@ -5,7 +5,7 @@ import cors from 'cors';
 import recipeRouter from './routes/recipe';
 import categoryRouter from './routes/category';
 
-// connect('mongodb://localhost:27017/receptsajten')
+// connect('mongodb://localhost:27017/receptsajten').then(() => {
 connect('mongodb+srv://axel:7HIx5jeaWJcdVnsK@receptsajten.kd2lz.mongodb.net/receptsajten?retryWrites=true&w=majority').then(() => {
     console.log('Connected to MongoDB')
     app.listen(port, () => {
