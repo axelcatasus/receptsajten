@@ -3,15 +3,39 @@ import { getRecipes, getRecipesBySearch, getRecipesById, pushRatingById } from '
 
 const router = express.Router();
 
-router.get('/', async (req: Request, res: Response) => {
-    const gottenRecipes = await getRecipes();
-    res.status(200).json(gottenRecipes);
-});
+// router.get('/', async (req: Request, res: Response) => {
+//     const gottenRecipes = await getRecipes();
+//     res.status(200).json(gottenRecipes);
+// });
 
-router.get('/search/:query', async (req: Request, res: Response) => {
-    const gottenRecipes = await getRecipesBySearch(req.params.query);
-    res.status(200).json(gottenRecipes);
-});
+// router.get('/search/:query', async (req: Request, res: Response) => {
+//     const gottenRecipes = await getRecipesBySearch(req.params.query);
+//     res.status(200).json(gottenRecipes);
+// });
+
+// router.get("/", async (req, res) => {
+//     const query = req.query
+//     if(Object.keys(query).length > 0){
+//         console.log(query)
+//       if(Object.keys(query).includes("search")){
+//         const recipes = await getRecipesBySearch(query.search)
+//         res.json(recipes)
+//       }
+//     }
+// });
+
+router.get("/", async (req, res) => {
+    const query = req.query
+    if(Object.keys(query).length > 0){
+      if(Object.keys(query).includes("search")){
+        const recipes = await getRecipesBySearch(query.search)
+        res.json(recipes)
+      }
+    } else {
+      const recipes = await getRecipes() 
+      res.json(recipes)
+    }
+  })
 
 router.get('/:recipeId', async (req: Request, res: Response) => {
     const gottenRecipe = await getRecipesById(req.params.recipeId);
