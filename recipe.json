@@ -2,10 +2,10 @@
 		{
 				"title": "Löksoppa",
 				"description": "Bajsa mer med soppa",
-				"imageUrl": "Kissen.jpg",
+				"imageUrl": "https://www.lecreuset.se/on/demandware.static/-/Library-Sites-lc-sharedLibrary/default/dw7b08a5b5/images/recipe/HD_PNG_LC_20200430_DK_RC_CI_r0000000000600_DAN.png",
 				"timeinMins": 120,
-				"ratings": [4,2,1,5,4,5,3,2,2,3,1],
-				"category": ["Soppa", "Vegetarisk", "Billig", "MR UMAMI"],
+				"ratings": [],
+				"category": ["Soppa", "Vegetarisk"],
 				"ingredients":
 						[
 								{
@@ -27,42 +27,22 @@
 						],
 				"instructions":
 						[
-								{
-										"instruction":"Skala lök och soppa",
-										"prio": 1
-								},
-								{
-										"instruction":"Blanda ihop",
-										"prio":2
-								},
-								{
-										"instruction":"Servera",
-										"prio":3
-								}
+						"Skala lök och soppa",
+						"Blanda ihop",
+						"Servera"
 						],
 				"comments":
 						[
-								{
-										"comment": "Löksoppa är en klassisk rätt",
-										"name": "Kalle"
-								},
-								{
-										"comment": "Löksoppa är inte alls klassisk rätt, Kalle",
-										"name": "Sven"
-								},
-								{
-										"comment": "Löksoppa är helt okej",
-										"name": "Lizett"
-								}
+								
 						]
 				},
 {
 		"title": "Köttbullar",
 		"description": "Köttbullar med köttfärs",
-		"imageUrl": "Köttbullar.jpg",
+		"imageUrl": "https://cdn-rdb.arla.com/Files/arla-se/3776820023/44d39292-0f40-46d6-a91c-0ff5931476e0.jpg",
 		"timeinMins": 120,
-		"ratings": [4,2,1,5,4,5,3,2,2,3,1],
-		"category": ["Köttbullar", "Kött", "Enkel", "Monosodiumglutamat"],
+		"ratings": [],
+		"category":  ["Kött", "Enkel"],
 		"ingredients":
 				[
 						{
@@ -85,33 +65,59 @@
 
 		"instructions":
 				[
-						{
-								"instruction":"Skala köttbullar och köttfärs",
-								"prio": 1
-						},
-						{
-								"instruction":"Blanda ihop",
-								"prio":2
-						},
-						{
-								"instruction":"Servera",
-								"prio":3
-						}
+				"Skala köttbullar och köttfärs",
+				"Blanda ihop",
+				"Servera"
 				],
 		"comments":
-				[
-						{
-								"comment": "Köttbullar är en klassisk rätt",
-								"name": "Kalle"
-						},
-						{
-								"comment": "Köttbullar är inte alls klassisk rätt, Kalle",
-								"name": "Sven"
-						},
-						{
-								"comment": "Köttbullar är helt okej",
-								"name": "Lizett"
-						}
-				]
+				[]
+},
+{
+    "title": "Spansk tortilla",
+    "description": "Spansk tortilla, potatisomelett eller Tortilla de patatas som de säger i Spanien är deras nationalrätt. I USA kallas den vanligast för Spanish omelett, men även Tortilla Espanola eller Spanish tortilla förekommer. Det är en rätt som till största del består av potatis och ägg. Men även lök, olivolja och salt.",
+    "imageUrl": "https://ingmar.app/blogg/wp-content/uploads/2021/10/Spansk-tortilla.jpg",
+    "timeinMins": 75,
+    "ratings": [],
+    "category": ["Vegetarisk", "Enkel", "Spanien"],
+    "ingredients":
+            [
+                    {
+                            "ingredient": "ägg",
+                            "amount": 6,
+                            "unit": "st"
+                    },
+                    {
+                            "ingredient": "gul lök",
+                            "amount": 1,
+                            "unit": ""
+                    },
+                    {
+                            "ingredient": "potatis",
+                            "amount": 700,
+                            "unit": "gram"
+                    },
+                    {
+                            "ingredient": "olivolja",
+                            "amount":1,
+                            "unit":"dl"
+                    },
+                    {
+                            "ingredient": "salt",
+                            "amount": null,
+                            "unit": ""
+                    },
+                    {
+                            "ingredient": "peppar",
+                            "amount": null,
+                            "unit": ""
+                    }
+            ],
+    "instructions":
+            [
+				"Stek skivad potatis och lök i rikligt med olivolja.",
+        		"Blanda ägg, potatis och lök i en skål.",
+                "Häll tillbaka blandningen i en stekpanna och stek i cirka 15 minuter."
+            ],
+    "comments":[]
 }
 ]

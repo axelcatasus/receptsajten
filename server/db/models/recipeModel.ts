@@ -59,14 +59,16 @@ const schema = new Schema<RecipeType>({
     comments: {
         type: [
             {
-                comment: String,
+                commentBody: String,
                 name: String,
-                createdAt: Date,
+                createdAt: String,
             }
         ],
         required: true
     }
 });
+
+// schema.set('timestamps', true)
 
 const RecipeModel = model('recipe', schema);
 // const RecipeModel = model<RecipeType>('recipe', schema);

@@ -3,13 +3,18 @@ import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
 import Stars from './Stars';
 // import { postRating } from '../api';
+import CommentForm from './CommentForm';
+import { fetchRecipeById } from '../api';
 
 const StyledRecipe = styled.div`
     display: grid;
     place-items: center;
     margin: 0 20rem;
     padding: 2rem;
-    background-color: tomato;
+    width: 60%;
+    border: 1px solid black;
+    border-radius: 5px;
+    background: linear-gradient(lemonchiffon, peru);
     & .flex {
         display: flex;
         flex-direction: column;
@@ -25,7 +30,11 @@ const StyledRecipe = styled.div`
         border-radius: 0.5rem;
         background-color: lemonchiffon;
         padding: 1rem;
-        margin: .5rem 0 ;
+        margin: .5rem 0;
+    }
+    & .comment-list {
+        display: flex;
+        flex-direction: column-reverse
     }
     & .comment-name {
         font-weight: bold;
@@ -35,16 +44,27 @@ const StyledRecipe = styled.div`
 
 const Recipe = () => {
     const [recipe, setRecipe] = useState<any>({});
-    const { id } = useParams();
-    useEffect(() => {
-        const fetchRecipe = async () => {
-            const recipe = await fetch(`http://localhost:3000/recipes/${id}`)
-            .then(res => res.json())
-        setRecipe(recipe);
+    const { id }: any = useParams();
+    const [sentComment , setSentComment] = useState(false);
+    const commentSent = () => {
+        console.log('comment sent')
+        setSentComment(!sentComment);
+        fetchRecipeById(id).then(recipe => {
+            setRecipe(recipe.data);
+        })
     }
-    fetchRecipe();
+    // const fetchRecipe = async () => {
+    //     const recipe = await fetch(`http://localhost:3000/recipes/${id}`)
+    //     .then(res => res.json())
+    //     setRecipe(recipe);
+    // }
+    useEffect(() => {   
+        fetchRecipeById(id).then(recipe => {
+            setRecipe(recipe.data);
+        })
+    // fetchRecipe();
+    // commentSent()
 }, [id]);
-console.log(recipe);
     return (
         <StyledRecipe>
             <h1>{recipe.title}</h1>
@@ -76,11 +96,13 @@ console.log(recipe);
             </div>
             <div className='comments'>
                 <h2>Kommentarer</h2>
-                <div>
+                {sentComment ?  <p>Tack för din kommentar!</p> : <CommentForm recipeId={recipe._id} trigger={commentSent} />}
+                <div className="comment-list">
                     {recipe.comments && recipe.comments.map((comment:any) => (
-                        <div className="comment" key={comment.comment}>
+                        <div className="comment" key={comment._id}>
                             <h4 className="comment-name">{comment.name}</h4>
-                            <p>{comment.comment}</p>
+                            <p>{comment.commentBody}</p>
+                            <p>{comment.createdAt}</p>
                         </div>
                     ))}
                 </div>
