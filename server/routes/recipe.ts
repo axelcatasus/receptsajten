@@ -1,4 +1,4 @@
-import express, {Request, Response, json} from 'express';
+import express, { Request, Response, json } from 'express';
 import { getRecipes, getRecipesBySearch, getRecipesById, pushRatingById } from '../db/recipe';
 
 const router = express.Router();
