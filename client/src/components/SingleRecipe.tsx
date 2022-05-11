@@ -70,7 +70,7 @@ console.log(recipe);
                 <h2>Gör såhär</h2>
                 <ol>
                     {recipe.instructions && recipe.instructions.map((step:any) => (
-                        <li key={step.instruction}>{step.instruction}</li>
+                        <li key={step}>{step}</li>
                     ))}
                 </ol>
             </div>

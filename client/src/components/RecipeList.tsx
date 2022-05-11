@@ -11,8 +11,8 @@ const RecipeList = () => {
     const fetchRecipes = async () => {
         const recipes = await fetch('http://localhost:3000/recipes')
         .then(res => res.json())
-    setRecipes(recipes);
-}
+        setRecipes(recipes);
+    }
 
     const [recipes, setRecipes] = useState<any>([]);
     useEffect(() => {
@@ -21,7 +21,6 @@ const RecipeList = () => {
     if(query){
         searchRecipes(query)
     }else{
-
         fetchRecipes();
     }
     }, [query])
