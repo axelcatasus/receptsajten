@@ -6,12 +6,15 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import SingleRecipe from './components/SingleRecipe';
 import CategoryView from './components/CategoryView';
+import { store } from './store'
+import { Provider } from 'react-redux'
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   // <React.StrictMode>
+    <Provider store={store}>
     <BrowserRouter>
     <Routes>
       <Route path="/" element={<App />} />
@@ -20,6 +23,7 @@ root.render(
     </Routes>
     {/* <App /> */}
     </BrowserRouter>
+    </Provider>
   // </React.StrictMode>
 );
 

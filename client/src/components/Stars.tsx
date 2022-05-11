@@ -3,6 +3,9 @@ import React from 'react'
 import styled from 'styled-components'
 import { useState, useEffect } from 'react';
 import { postRating } from '../api/index';
+import { useAppSelector, useAppDispatch } from '../hooks'
+import { useDispatch } from 'react-redux';
+import { updateRecipeRatings } from '../features/recipes/recipesSlice';
  
 
 interface StarsProps {
@@ -10,9 +13,6 @@ interface StarsProps {
     recipeRatings : [number]
     recipeId : string
     }
-// const ratingChanged = ({newRating}: any) => {
-//   console.log(newRating)
-// }
 
 const calculateAverage = (rating : any) => {
     const sum = rating.reduce((a:number, b:number) => a + b);
@@ -27,9 +27,12 @@ const StyledStars = styled(ReactStars)`
 const starColor = '#ffc107';
 
 const Stars = ({recipeRatings, recipeId, edit}: StarsProps) => {
-    const ratingChanged = (newRating: any) => {
+    const dispatch = useDispatch();
+    const ratingChanged = async (newRating: any) => {
         console.log(newRating, recipeId)
-        postRating(recipeId, newRating);
+        await postRating(recipeId, newRating);
+        const recipe = {recipeId: recipeId, rating: newRating};
+        dispatch(updateRecipeRatings(recipe));
     }
     return (
     <StyledStars
