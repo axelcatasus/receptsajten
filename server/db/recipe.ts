@@ -22,13 +22,19 @@ export const pushRatingById = async (id: string, rating: number) => {
         { _id: id },
         { $push: { ratings: rating } },
     );
-        
-
-
-
-    // if(recipe) {
-    // recipe.ratings.push(rating);
-    // recipe.save();
-    // return recipe;
-    // }
 }
+export const pushCommentById = async (id: string, comment: any) => {
+    console.log(comment)
+    const recipe = await RecipeModel.findOneAndUpdate(
+        { _id: id },
+        { $push: { comments: comment, $id: true } } 
+    );
+}
+
+
+// comments:
+// {
+//     comment: comment.commentBody,
+//     name: comment.name,
+//     createdAt: comment.createdAt
+// } 

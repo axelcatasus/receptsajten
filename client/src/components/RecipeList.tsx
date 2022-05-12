@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import RecipeCard from "./RecipeCard";
+import { fetchRecipes,  } from "../api";
 
 const RecipeList = () => {    
     const [query, setQuery] = useState("");

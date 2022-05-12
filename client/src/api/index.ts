@@ -10,6 +10,24 @@ export async function fetchRecipes(){
     }
   }
 
+  export async function fetchRecipeById(id: string){
+    try{
+      const response = await axios.get(`/recipes/${id}`)
+      return response
+    } catch (error: any){
+      return error.response
+    }
+  }
+
+  export async function fetchRecipeBySearch(query: string){
+    try{
+      const response = await axios.get(`/recipes/?search=${query}`)
+      return response
+    } catch (error: any){
+      return error.response
+    }
+  }
+  
   export async function fetchRecipesByCategory(category: any){
     try{
       const response = await axios.get(`/category/${category}`)
@@ -29,7 +47,16 @@ export async function fetchCategories(){
 
 export async function postRating(recipeId: any, rating: any){
     try{
-      const response = await axios.post(`/recipes/${recipeId}`, {rating: rating})
+      const response = await axios.post(`/recipes/${recipeId}/ratings`, {rating: rating})
+      return response
+    } catch (error: any){
+      return error.response
+    }
+  }
+
+  export async function postComment(recipeId: string, comment: object){
+    try{
+      const response = await axios.post(`/recipes/${recipeId}/comment`, {comment: comment})
       return response
     } catch (error: any){
       return error.response

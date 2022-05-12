@@ -1,5 +1,5 @@
 import express, { Request, Response, json } from 'express';
-import { getRecipes, getRecipesBySearch, getRecipesById, pushRatingById } from '../db/recipe';
+import { getRecipes, getRecipesBySearch, getRecipesById, pushRatingById, pushCommentById } from '../db/recipe';
 
 const router = express.Router();
 
@@ -42,10 +42,16 @@ router.get('/:recipeId', async (req: Request, res: Response) => {
     res.status(200).json(gottenRecipe);
 });
 
-router.post('/:recipeId', async (req: Request, res: Response) => {
+router.post('/:recipeId/ratings', async (req: Request, res: Response) => {
     const gottenRecipe = await pushRatingById(req.params.recipeId, req.body.rating);
     res.status(200).json(gottenRecipe);
 });
+
+router.post('/:recipeId/comment', async (req: Request, res: Response) => {
+    const gottenRecipe = await pushCommentById(req.params.recipeId, req.body.comment);
+    res.status(200).json(gottenRecipe);
+});
+
 
 
 export default router

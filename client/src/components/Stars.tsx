@@ -15,8 +15,13 @@ interface StarsProps {
     }
 
 const calculateAverage = (rating : any) => {
-    const sum = rating.reduce((a:number, b:number) => a + b);
-    return sum / rating.length;
+    if(rating.length > 0){
+        const sum = rating.reduce((a:number, b:number) => a + b);
+        return sum / rating.length;
+    }
+    else{
+        return
+    }
 };
 
 const StyledStars = styled(ReactStars)`
@@ -27,12 +32,12 @@ const StyledStars = styled(ReactStars)`
 const starColor = '#ffc107';
 
 const Stars = ({recipeRatings, recipeId, edit}: StarsProps) => {
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
     const ratingChanged = async (newRating: any) => {
-        console.log(newRating, recipeId)
+        // console.log(newRating, recipeId)
         await postRating(recipeId, newRating);
-        const recipe = {recipeId: recipeId, rating: newRating};
-        dispatch(updateRecipeRatings(recipe));
+        // const recipe = {recipeId: recipeId, rating: newRating};
+        // dispatch(updateRecipeRatings(recipe));
     }
     return (
     <StyledStars

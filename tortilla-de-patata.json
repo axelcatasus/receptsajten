@@ -41,22 +41,19 @@
     "instructions":
             [
                     {
-                            "instruction":"Stek skivad potatis och lök i rikligt med olivolja.",
-                            "prio": 1
+                            "instruction":"Stek skivad potatis och lök i rikligt med olivolja."
                     },
                     {
-                            "instruction":"Blanda ägg, potatis och lök i en skål.",
-                            "prio":2
+                            "instruction":"Blanda ägg, potatis och lök i en skål."
                     },
                     {
-                            "instruction":"Häll tillbaka blandningen i en stekpanna och stek i cirka 15 minuter.",
-                            "prio":3
+                            "instruction":"Häll tillbaka blandningen i en stekpanna och stek i cirka 15 minuter."
                     }
             ],
     "comments":
             [
                     {
-                            "comment": "Barnen älskade den! Lätt att kombinera med diverse olika tillbehör (tänk tapas) och maträtter! Prova den gärna i samband med Spaniens nationaldag den 12 oktober.",
+                            "commentBody": "Barnen älskade den! Lätt att kombinera med diverse olika tillbehör (tänk tapas) och maträtter! Prova den gärna i samband med Spaniens nationaldag den 12 oktober.",
                             "name": "Ingmar"
                     }
             ]
