@@ -3,7 +3,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { useState, useEffect } from 'react';
 import { postRating } from '../api/index';
-import { updateRecipeRatings } from '../features/recipes/recipesSlice';
+// import { updateRecipeRatings } from '../features/recipes/recipesSlice';
  
 
 interface StarsProps {
@@ -17,7 +17,7 @@ const calculateAverage = (rating : any) => {
         const sum = rating.reduce((a:number, b:number) => a + b);
         return sum / rating.length;
     }
-    else{
+    else {
         return
     }
 };

@@ -5,6 +5,8 @@ import Stars from './Stars';
 // import { postRating } from '../api';
 import CommentForm from './CommentForm';
 import { fetchRecipeById } from '../api';
+import { useAppSelector, useAppDispatch } from "../app/hooks";
+import { fetchByIdThunk, fetchFromStateThunk } from '../features/recipes/recipesSlice';
 
 const StyledRecipe = styled.div`
     display: grid;
@@ -43,28 +45,38 @@ const StyledRecipe = styled.div`
 `
 
 const Recipe = () => {
-    const [recipe, setRecipe] = useState<any>({});
+    // const [recipe, setRecipe] = useState<any>({});
     const { id }: any = useParams();
     const [sentComment , setSentComment] = useState(false);
     const commentSent = () => {
         console.log('comment sent')
         setSentComment(!sentComment);
         fetchRecipeById(id).then(recipe => {
-            setRecipe(recipe.data);
+            // setRecipe(recipe.data);
         })
     }
-    // const fetchRecipe = async () => {
-    //     const recipe = await fetch(`http://localhost:3000/recipes/${id}`)
-    //     .then(res => res.json())
-    //     setRecipe(recipe);
-    // }
+  const dispatch = useAppDispatch();
+  const recipe = useAppSelector(state => state.recipes.singleRecipe);
+  const recipes = useAppSelector(state => state.recipes.recipes);
+
     useEffect(() => {   
-        fetchRecipeById(id).then(recipe => {
-            setRecipe(recipe.data);
-        })
-    // fetchRecipe();
-    // commentSent()
-}, [id]);
+        const foundRecipe = recipes.find(recipe => recipe._id === id)
+        if(!foundRecipe){
+            console.log("fetched")
+            dispatch(fetchByIdThunk(id));
+        } else {
+            console.log('fetched from state')
+            dispatch(fetchFromStateThunk(foundRecipe))
+        }
+        // fetchRecipeById(id).then(recipe => {
+        //     setRecipe(recipe.data);
+        // })
+        
+        // console.log('recipe', id)
+        // dispatch(fetchByIdThunk(id));
+        
+    
+}, []);
     return (
         <StyledRecipe>
             <h1>{recipe.title}</h1>

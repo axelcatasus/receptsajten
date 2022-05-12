@@ -1,38 +1,23 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
+import { useAppSelector, useAppDispatch } from "../app/hooks";
+import { fetchRecipesThunk } from "../features/recipes/recipesSlice";
 import RecipeCard from "./RecipeCard";
-import { fetchRecipes, fetchRecipeBySearch } from "../api";
+import { RecipeType } from "../features/recipes/recipeTypes";
 
 const RecipeList = () => {    
-    const [query, setQuery] = useState("");
-    // const searchRecipes = async (query: string) => {
-    //     const recipes = await fetch(`http://localhost:3000/recipes?search=${query}`)
-    //     .then(res => res.json())
-    //     setRecipes(recipes);
-    // }
-    // const fetchRecipes = async () => {
-    //     const recipes = await fetch('http://localhost:3000/recipes')
-    //     .then(res => res.json())
-    //     setRecipes(recipes);
-    // }
-
-    const [recipes, setRecipes] = useState<any>([]);
+    const dispatch = useAppDispatch();
+    const recipes = useAppSelector(state => state.recipes.recipes);
     useEffect(() => {
-  
-    console.log(query)
-    if(query){
-     fetchRecipeBySearch(query).then(res => setQuery(res))
-    }else{
-     fetchRecipes();
-    }
-    }, [query])
+        dispatch(fetchRecipesThunk())
+    }, []);
 
     return (
         <div className="recipe-list">
             <form>
-                <input type="text" placeholder="Sök efter recept"  onChange={(e) => setQuery((e.target as any).value)}/>
+                <input type="text" placeholder="Sök efter recept"  onChange={(e: React.ChangeEvent<HTMLInputElement>) => dispatch(fetchRecipesThunk(e.target.value))}/>
                 <button type="submit">Sök</button>
             </form>
-            {recipes.map((recipe: any) => <RecipeCard key={recipe._id} recipe={recipe}></RecipeCard> )}
+            {recipes.map((recipe: RecipeType) => <RecipeCard key={recipe._id} recipe={recipe}></RecipeCard> )}
 
         </div>
     )
