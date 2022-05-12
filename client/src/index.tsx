@@ -6,7 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import SingleRecipe from './components/SingleRecipe';
 import CategoryView from './components/CategoryView';
-import { store } from './store'
+import { store } from './app/store'
 import { Provider } from 'react-redux'
 import RecipeList from './components/RecipeList';
 

@@ -2,7 +2,6 @@ import React from 'react';
 import './App.css';
 import RecipeList from './components/RecipeList';
 import CategoriesNav from './components/CategoriesNav';
-import RecipesTest from './components/RecipesTest';
 import { Outlet, Link } from 'react-router-dom';
 
 

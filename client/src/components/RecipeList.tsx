@@ -1,28 +1,28 @@
 import { useState, useEffect } from "react";
 import RecipeCard from "./RecipeCard";
-import { fetchRecipes,  } from "../api";
+import { fetchRecipes, fetchRecipeBySearch } from "../api";
 
 const RecipeList = () => {    
     const [query, setQuery] = useState("");
-    const searchRecipes = async (query: string) => {
-        const recipes = await fetch(`http://localhost:3000/recipes?search=${query}`)
-        .then(res => res.json())
-        setRecipes(recipes);
-    }
-    const fetchRecipes = async () => {
-        const recipes = await fetch('http://localhost:3000/recipes')
-        .then(res => res.json())
-        setRecipes(recipes);
-    }
+    // const searchRecipes = async (query: string) => {
+    //     const recipes = await fetch(`http://localhost:3000/recipes?search=${query}`)
+    //     .then(res => res.json())
+    //     setRecipes(recipes);
+    // }
+    // const fetchRecipes = async () => {
+    //     const recipes = await fetch('http://localhost:3000/recipes')
+    //     .then(res => res.json())
+    //     setRecipes(recipes);
+    // }
 
     const [recipes, setRecipes] = useState<any>([]);
     useEffect(() => {
   
     console.log(query)
     if(query){
-        searchRecipes(query)
+     fetchRecipeBySearch(query).then(res => setQuery(res))
     }else{
-        fetchRecipes();
+     fetchRecipes();
     }
     }, [query])
 

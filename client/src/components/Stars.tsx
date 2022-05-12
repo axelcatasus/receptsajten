@@ -3,8 +3,6 @@ import React from 'react'
 import styled from 'styled-components'
 import { useState, useEffect } from 'react';
 import { postRating } from '../api/index';
-import { useAppSelector, useAppDispatch } from '../hooks'
-import { useDispatch } from 'react-redux';
 import { updateRecipeRatings } from '../features/recipes/recipesSlice';
  
 
@@ -32,12 +30,8 @@ const StyledStars = styled(ReactStars)`
 const starColor = '#ffc107';
 
 const Stars = ({recipeRatings, recipeId, edit}: StarsProps) => {
-    // const dispatch = useDispatch();
     const ratingChanged = async (newRating: any) => {
-        // console.log(newRating, recipeId)
         await postRating(recipeId, newRating);
-        // const recipe = {recipeId: recipeId, rating: newRating};
-        // dispatch(updateRecipeRatings(recipe));
     }
     return (
     <StyledStars
