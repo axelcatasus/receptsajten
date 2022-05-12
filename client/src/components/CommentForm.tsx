@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useState } from "react";
+import React, { useState } from "react";
 import { postComment } from "../api";
 
 const StyledCommentForm = styled.form`
@@ -18,7 +18,10 @@ const CommentForm = ({recipeId, trigger}: CommentFormProps) => {
         createdAt: new Date().toLocaleString()
     });
 
-    const handleSubmit = async (e : any) => {
+
+
+    const handleSubmit = async (e: any
+    ) => {
         e.preventDefault()
         await postComment(recipeId, comment)
         trigger()

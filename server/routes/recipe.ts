@@ -42,7 +42,7 @@ router.get('/:recipeId', async (req: Request, res: Response) => {
     res.status(200).json(gottenRecipe);
 });
 
-router.post('/:recipeId', async (req: Request, res: Response) => {
+router.post('/:recipeId/ratings', async (req: Request, res: Response) => {
     const gottenRecipe = await pushRatingById(req.params.recipeId, req.body.rating);
     res.status(200).json(gottenRecipe);
 });

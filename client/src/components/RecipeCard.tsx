@@ -29,6 +29,10 @@ const StyledRecipeCard = styled.div`
     & a {
         text-decoration: none;  
     }
+    & .ratings-number {
+        text-align: center;
+        font-size: 0.8rem;
+    }
 `
 const RecipeCard = ({recipe}: any) => {
     return (
@@ -43,6 +47,7 @@ const RecipeCard = ({recipe}: any) => {
         <div>
             <h2>{recipe.ingredients.length} Ingredienser | {recipe.timeinMins} Minuter</h2>
             <Stars recipeRatings={recipe.ratings} recipeId={recipe._id} edit={false}/>
+            <p className="ratings-number">{recipe.ratings.length} omdömen</p>
         </div>
         <Link to={`/recipes/${recipe._id}`}>
             <p>{recipe.comments.length} kommentarer<span className="material-symbols-outlined">comment</span></p>
