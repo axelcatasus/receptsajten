@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
-import RecipeList from './components/RecipeList';
-import CategoriesNav from './components/CategoriesNav';
+import RecipeList from './features/recipes/RecipeList';
+import CategoriesNav from './features/categories/CategoriesNav';
 import { Outlet, Link } from 'react-router-dom';
 
 

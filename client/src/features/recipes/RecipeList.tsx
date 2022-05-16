@@ -1,8 +1,8 @@
 import { useEffect } from "react";
-import { useAppSelector, useAppDispatch } from "../app/hooks";
-import { fetchRecipesThunk } from "../features/recipes/recipesSlice";
+import { useAppSelector, useAppDispatch } from "../../app/hooks";
+import { fetchRecipesThunk } from "../../features/recipes/recipesSlice";
 import RecipeCard from "./RecipeCard";
-import { RecipeType } from "../features/recipes/recipeTypes";
+import { RecipeType } from "./recipeTypes";
 
 const RecipeList = () => {    
     const dispatch = useAppDispatch();
@@ -13,7 +13,7 @@ const RecipeList = () => {
 
     return (
         <div className="recipe-list">
-            <form>
+            <form onSubmit={(e: any) => e.preventDefault()}>
                 <input type="text" placeholder="Sök efter recept"  onChange={(e: React.ChangeEvent<HTMLInputElement>) => dispatch(fetchRecipesThunk(e.target.value))}/>
                 <button type="submit">Sök</button>
             </form>

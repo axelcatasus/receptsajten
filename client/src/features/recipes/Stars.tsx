@@ -2,7 +2,9 @@ import ReactStars from 'react-stars'
 import React from 'react'
 import styled from 'styled-components'
 import { useState, useEffect } from 'react';
-import { postRating } from '../api/index';
+import { postRating } from '../../api/index';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { fetchByIdThunk} from './recipesSlice';
 // import { updateRecipeRatings } from '../features/recipes/recipesSlice';
  
 
@@ -30,10 +32,15 @@ const StyledStars = styled(ReactStars)`
 const starColor = '#ffc107';
 
 const Stars = ({recipeRatings, recipeId, edit}: StarsProps) => {
+    const [starToggle, setStarToggle] = useState(true);
+    const dispatch = useAppDispatch();
     const ratingChanged = async (newRating: any) => {
+        setStarToggle(false);
         await postRating(recipeId, newRating);
+        dispatch(fetchByIdThunk(recipeId));
     }
-    return (
+    return  (
+        starToggle ? 
     <StyledStars
     count={5}
     value={calculateAverage(recipeRatings)}
@@ -43,6 +50,7 @@ const Stars = ({recipeRatings, recipeId, edit}: StarsProps) => {
     color2={starColor}
     half={false}
     />
+    : <p>Tack för din röst!</p>
     )
 }
  

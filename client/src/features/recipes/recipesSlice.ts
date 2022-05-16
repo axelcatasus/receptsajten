@@ -1,18 +1,20 @@
 import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit'
-import type { RootState } from '../../app/store'
-import { fetchRecipes, fetchRecipeById, fetchRecipeBySearch } from '../../api/'
+// import type { RootState } from '../../app/store'
+import { fetchRecipes, fetchRecipeById, fetchRecipeBySearch, postRating, fetchRecipesByCategoryAndSearch, fetchRecipesByCategory } from '../../api/'
 import { RecipeType } from './recipeTypes'
-import { useAppSelector } from '../../app/hooks'
+// import { useAppSelector } from '../../app/hooks'
 
 interface RecipesState {
     recipes: any[],
     singleRecipe: any
 }
 
+
 const initialState: RecipesState = {
     recipes: [],
     singleRecipe: {}
 }
+
 
 
 
@@ -36,22 +38,45 @@ export const fetchByIdThunk: any = createAsyncThunk(
         return recipe.data
         
     }
-)
+)   
 
-export const fetchFromStateThunk: any = createAsyncThunk(
-    'recipes/fetchFromState',
-    async (recipe) => {
-        return recipe
+export const fetchRecipesByCategoryThunk: any = createAsyncThunk(
+    'recipes/fetchByCategory',
+    async (category: string) => {
+        const recipes = await fetchRecipesByCategory(category)
+        return recipes.data
     }
 )
-        
-    
+
+interface catSearchPayload {
+        query: string,
+        category: string,
+}
+
+export const fetchRecipesByCategoriesAndSearchThunk: any = createAsyncThunk(
+    'categories/fetchBySearch',
+    async (payload: catSearchPayload) => {
+        if(payload.query !== undefined) {
+        const recipes = await fetchRecipesByCategoryAndSearch(payload.category, payload.query)
+        return recipes.data
+        } else {
+        const recipes = await fetchRecipesByCategory(payload.category)
+        return recipes.data
+        }
+    }
+)
+
+
+
 
 
 export const recipesSlice = createSlice({
     name: 'recipes',
     initialState,
     reducers: {
+        addSingleRecipeToState: (state, action: PayloadAction<RecipeType>) => {
+            state.singleRecipe = action.payload
+        }
     },
     extraReducers: {
         [fetchRecipesThunk.fulfilled]: (state, action) => {
@@ -60,15 +85,17 @@ export const recipesSlice = createSlice({
         [fetchByIdThunk.fulfilled]: (state, action) => {
             state.singleRecipe = action.payload
         },
-        [fetchFromStateThunk.fulfilled]: (state, action) => {
-            state.singleRecipe = action.payload
+        [fetchRecipesByCategoriesAndSearchThunk.fulfilled.type]: (state, action: PayloadAction<any>) => {
+            state.recipes = action.payload
+        },
+        [fetchRecipesByCategoryThunk.fulfilled]: (state, action) => {
+            state.recipes = action.payload
         }
+        
     }
 
 })
 
-// export const { addRecipe, updateRecipeRatings } = recipesSlice.actions
-
-// export const selectRecipes = (state: RootState) => state.recipes.recipes
+export const { addSingleRecipeToState } = recipesSlice.actions
 
 export default recipesSlice.reducer

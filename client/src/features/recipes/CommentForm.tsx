@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import React, { useState } from "react";
-import { postComment } from "../api";
+import { postComment } from "../../api";
 
 const StyledCommentForm = styled.form`
     display: grid;
@@ -18,27 +18,27 @@ const CommentForm = ({recipeId, trigger}: CommentFormProps) => {
         createdAt: new Date().toLocaleString()
     });
 
-
-
-    const handleSubmit = async (e: any
+const [formToggle, setFormToggle] = useState(true);
+const handleSubmit = async (e: any
     ) => {
         e.preventDefault()
+        setFormToggle(false)
         await postComment(recipeId, comment)
         trigger()
     }
     return (
-        <StyledCommentForm onSubmit={handleSubmit}>
+        formToggle ? <StyledCommentForm onSubmit={handleSubmit}>
             <label>
                 Name:
-                <input type="text" onChange={(e) => setComment({...comment, name: e.target.value})}/>
+                <input required type="text" onChange={(e) => setComment({...comment, name: e.target.value})}/>
             </label>
             <label>
                 Comment:
-                <textarea onChange={(e) => setComment({...comment, commentBody: e.target.value})}/>
+                <textarea required onChange={(e) => setComment({...comment, commentBody: e.target.value})}/>
             </label>
             <button>Submit</button>
         </StyledCommentForm>
-    )
+    : <p>Tack för din kommentar!</p>)
 }
 
 export default CommentForm;
