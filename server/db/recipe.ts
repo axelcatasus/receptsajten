@@ -1,4 +1,5 @@
 import RecipeModel, { RecipeType } from "./models/recipeModel";
+import { CommentType } from "./models/types/commentType";
 
 export const getRecipes = async () => {
     const recipes = await RecipeModel.find();
@@ -23,18 +24,9 @@ export const pushRatingById = async (id: string, rating: number) => {
         { $push: { ratings: rating } },
     );
 }
-export const pushCommentById = async (id: string, comment: any) => {
-    console.log(comment)
+export const pushCommentById = async (id: string, comment: CommentType)=> {
     const recipe = await RecipeModel.findOneAndUpdate(
         { _id: id },
         { $push: { comments: comment, $id: true } } 
     );
 }
-
-
-// comments:
-// {
-//     comment: comment.commentBody,
-//     name: comment.name,
-//     createdAt: comment.createdAt
-// } 

@@ -1,16 +1,14 @@
-import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit'
-import { fetchCategories, fetchRecipesByCategoryAndSearch } from '../../api'
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import { fetchCategories } from '../../api'
 
 
 interface CategoryState {
-    categories: any,
-    currentCategory: string
+    categories: string[],
 }
 
 
 const initialState: CategoryState = {
     categories: [],
-    currentCategory: ''
 }
 
 
@@ -22,8 +20,6 @@ export const fetchCategoriesThunk = createAsyncThunk(
     }
 )
 
-
-
 export const categoriesSlice = createSlice({
     name: 'categories',
     initialState,
@@ -31,7 +27,7 @@ export const categoriesSlice = createSlice({
         
     },
     extraReducers: {
-        [fetchCategoriesThunk.fulfilled.type]: (state, action: PayloadAction<any>) => {
+        [fetchCategoriesThunk.fulfilled.type]: (state, action) => {
             state.categories = action.payload
         },
     }

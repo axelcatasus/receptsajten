@@ -9,11 +9,11 @@ const RecipeList = () => {
     const recipes = useAppSelector(state => state.recipes.recipes);
     useEffect(() => {
         dispatch(fetchRecipesThunk())
-    }, []);
+    }, [dispatch]);
 
     return (
         <div className="recipe-list">
-            <form onSubmit={(e: any) => e.preventDefault()}>
+            <form onSubmit={(e) => e.preventDefault()}>
                 <input type="text" placeholder="Sök efter recept"  onChange={(e: React.ChangeEvent<HTMLInputElement>) => dispatch(fetchRecipesThunk(e.target.value))}/>
                 <button type="submit">Sök</button>
             </form>

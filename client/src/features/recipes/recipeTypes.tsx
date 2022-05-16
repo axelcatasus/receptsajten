@@ -1,22 +1,22 @@
-interface CommentType {
-    comment: string;
+export interface CommentType {
+    _id: string;
+    commentBody: string;
     name: string;
-    createdAt: Date;
+    createdAt: string;
 }
 
-interface IngredientType {
+export interface IngredientType {
     ingredient: string;
     amount: number;
     unit: string;
 }
 
-interface InstructionType {
+export interface InstructionType {
     instruction: string;
-    prio?: number;
 }
 
 export interface RecipeType {
-    _id?: string,
+    _id: string,
     title: string;
     description: string;
     imageUrl: string;

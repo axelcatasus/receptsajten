@@ -1,11 +1,10 @@
 import ReactStars from 'react-stars'
 import React from 'react'
 import styled from 'styled-components'
-import { useState, useEffect } from 'react';
+import { useState} from 'react';
 import { postRating } from '../../api/index';
-import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { useAppDispatch} from '../../app/hooks';
 import { fetchByIdThunk} from './recipesSlice';
-// import { updateRecipeRatings } from '../features/recipes/recipesSlice';
  
 
 interface StarsProps {
@@ -14,7 +13,7 @@ interface StarsProps {
     recipeId : string
     }
 
-const calculateAverage = (rating : any) => {
+const calculateAverage = (rating : number[]) => {
     if(rating.length > 0){
         const sum = rating.reduce((a:number, b:number) => a + b);
         return sum / rating.length;
@@ -34,7 +33,7 @@ const starColor = '#ffc107';
 const Stars = ({recipeRatings, recipeId, edit}: StarsProps) => {
     const [starToggle, setStarToggle] = useState(true);
     const dispatch = useAppDispatch();
-    const ratingChanged = async (newRating: any) => {
+    const ratingChanged = async (newRating: number) => {
         setStarToggle(false);
         await postRating(recipeId, newRating);
         dispatch(fetchByIdThunk(recipeId));

@@ -1,15 +1,11 @@
 import { useState, useEffect } from "react";
 import styled from "styled-components";
-import { fetchCategories } from "../../api";
-import {Link, NavLink} from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { fetchCategoriesThunk } from "./categoriesSlice";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 
 
-interface Category {
-    _id: string;
-    count: number;
-}
+
 
 const StyledNav = styled.div`
     display: flex;
@@ -18,7 +14,8 @@ const StyledNav = styled.div`
     justify-content: center;
     & .nav-item {
         :hover {
-            cursor: pointer
+            cursor: pointer;
+            transform: scale(1.2)
         }
     }
     & a, a:visited {
@@ -37,17 +34,14 @@ const CategoriesNav = () => {
     const [showCategories, setShowCategories] = useState(false);
 
     useEffect(() => {
-        // fetchCategories().then(categories => setCategories(categories.data));
         dispatch(fetchCategoriesThunk());
-        console.log(categories);
-    }, [showCategories])
+    }, [dispatch]);
 
     return (
         <StyledNav>
             {!showCategories && <h3 className="nav-item" onClick={() => setShowCategories(!showCategories)}>Kategorier ▼</h3>}
             {showCategories && <h3 className="nav-item" onClick={() => setShowCategories(!showCategories)}>Kategorier ▲</h3>}
-            {showCategories && categories.map((category: any) => <NavLink to={`/category/${category._id}`}> <p key={category}>{category._id} ({category.count})</p> </NavLink>)}
-            {/* {showCategories && categories.map((category: any) => <Link to={`/category/${category._id}`}> <p key={category}>{category._id} ({category.count})</p> </Link>)} */}
+            {showCategories && categories.map((category: any) => <NavLink to={`/category/${category._id}`}> <p key={category._id}>{category._id} ({category.count})</p> </NavLink>)}
         </StyledNav>
             )
 }

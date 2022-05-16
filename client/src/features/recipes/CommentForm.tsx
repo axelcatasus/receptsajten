@@ -5,7 +5,6 @@ import { postComment } from "../../api";
 const StyledCommentForm = styled.form`
     display: grid;
 `
-
 interface CommentFormProps {
     recipeId: string,
     trigger: Function,
@@ -19,8 +18,7 @@ const CommentForm = ({recipeId, trigger}: CommentFormProps) => {
     });
 
 const [formToggle, setFormToggle] = useState(true);
-const handleSubmit = async (e: any
-    ) => {
+const handleSubmit = async (e: React.SyntheticEvent) => {
         e.preventDefault()
         setFormToggle(false)
         await postComment(recipeId, comment)
