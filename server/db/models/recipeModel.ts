@@ -14,6 +14,7 @@ export interface RecipeType {
     ingredients: IngredientType[];
     instructions: InstructionType[];
     comments: CommentType[];
+   
 }
 
 
@@ -65,13 +66,12 @@ const schema = new Schema<RecipeType>({
             }
         ],
         required: true
-    }
+    },
+    
 });
 
-// schema.set('timestamps', true)
 
 const RecipeModel = model('recipe', schema);
-// const RecipeModel = model<RecipeType>('recipe', schema);
 
 export default RecipeModel
 

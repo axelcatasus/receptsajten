@@ -1,12 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
 import Stars from './Stars';
-// import { postRating } from '../api';
 import CommentForm from './CommentForm';
-import { fetchRecipeById } from '../../api';
 import { useAppSelector, useAppDispatch } from "../../app/hooks";
 import { fetchByIdThunk, addSingleRecipeToState } from './recipesSlice';
+import { IngredientType, InstructionType, CommentType } from './recipeTypes';
 
 const StyledRecipe = styled.div`
     display: grid;
@@ -48,13 +47,9 @@ const StyledRecipe = styled.div`
 `
 
 const Recipe = () => {
-    // const [recipe, setRecipe] = useState<any>({});
-    const { id }: any = useParams();
-    const [sentComment , setSentComment] = useState(false);
+    const { id } = useParams();
     const dispatch = useAppDispatch();
     const commentSent = async () => {
-        console.log('comment sent')
-        // setSentComment(!sentComment);
         dispatch(fetchByIdThunk(id));
     }
   const recipe = useAppSelector(state => state.recipes.singleRecipe);
@@ -63,13 +58,12 @@ const Recipe = () => {
     useEffect(() => {   
         const foundRecipe = recipes.find(recipe => recipe._id === id)
         if(!foundRecipe){
-            console.log("fetched")
             dispatch(fetchByIdThunk(id));
         } else {
-            console.log('fetched from state')
             dispatch(addSingleRecipeToState(foundRecipe))
         }
-},[]);
+    }, [id, recipes, dispatch]);
+
     return (
         <StyledRecipe>
             <h1>{recipe.title}</h1>
@@ -89,14 +83,14 @@ const Recipe = () => {
             <div>
                 <h2>Ingredienser</h2>
                 <ul>
-                    {recipe.ingredients && recipe.ingredients.map((ingredient:any) => (
+                    {recipe.ingredients && recipe.ingredients.map((ingredient:IngredientType) => (
                         <li key={ingredient.ingredient}>{ingredient.amount} {ingredient.unit} {ingredient.ingredient}</li>
                     ))}
                 </ul>
                 <h2>Gör såhär</h2>
                 <ol>
-                    {recipe.instructions && recipe.instructions.map((step:any) => (
-                        <li key={step}>{step}</li>
+                    {recipe.instructions && recipe.instructions.map((instruction: InstructionType) => (
+                        <li key={instruction.toString()}>{instruction.toString()}</li>
                     ))}
                 </ol>
             </div>
@@ -104,7 +98,7 @@ const Recipe = () => {
                 <h2>Kommentarer</h2>
                 <CommentForm recipeId={recipe._id} trigger={commentSent} />
                 <div className="comment-list">
-                    {recipe.comments && recipe.comments.map((comment:any) => (
+                    {recipe.comments && recipe.comments.map((comment:CommentType) => (
                         <div className="comment" key={comment._id}>
                             <h4 className="comment-name">{comment.name}</h4>
                             <p>{comment.commentBody}</p>

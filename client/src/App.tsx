@@ -1,19 +1,16 @@
 import React from 'react';
 import './App.css';
-import RecipeList from './features/recipes/RecipeList';
 import CategoriesNav from './features/categories/CategoriesNav';
-import { Outlet, Link } from 'react-router-dom';
+import { Outlet, NavLink } from 'react-router-dom';
 
 
 const App = () => 
   <div className='App'>
-    <Link to="/">
-      <h1 className='header'>RECEPTSAJTEN</h1>
-    </Link>
+    <NavLink className='header' to="/">
+      <h1>RECEPTSAJTEN</h1>
+    </NavLink>
     <CategoriesNav />
-    {/* <RecipeList /> */}
     <Outlet />
-    {/* <RecipesTest /> */}
   </div>
 
 export default App;

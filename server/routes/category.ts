@@ -13,15 +13,9 @@ router.get('/:category', async (req: Request, res: Response) => {
     res.status(200).json(gottenRecipes);
 });
 
-// router.get('/:category/recipes/:abc', async (req: Request, res: Response) => {
-//     const gottenRecipes = await getRecipesByCategoryAndSearch(req.params.category, req.params.abc);
-//     res.status(200).json(gottenRecipes);
-// });
-
-router.get("/:category/recipes/", async (req, res) => {
+router.get("/:category/recipes/", async (req: Request, res: Response) => {
     const query = req.query
     const category = req.params.category
-    // if(query){
     if(Object.keys(query).length > 0){
       if(Object.keys(query).includes("search")){
         const recipes = await getRecipesByCategoryAndSearch(category, query.search)

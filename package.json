@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "@types/mongoose": "^5.11.97",
+    "@types/redux-thunk": "^2.1.0",
     "mongoose": "^6.3.1"
   }
 }

@@ -1,7 +1,11 @@
-import { useState, useEffect } from "react";
 import styled from "styled-components";
 import Stars from "./Stars";
 import {Link} from "react-router-dom";
+import { RecipeType } from "./recipeTypes";
+
+interface RecipeCardProps {
+    recipe: RecipeType;
+}
 
 const StyledRecipeCard = styled.div`
     width: 50rem;
@@ -34,7 +38,7 @@ const StyledRecipeCard = styled.div`
         font-size: 0.8rem;
     }
 `
-const RecipeCard = ({recipe}: any) => {
+const RecipeCard = ({recipe}: RecipeCardProps) => {
     return (
     <StyledRecipeCard>
         <img src={recipe.imageUrl} alt="receptbild" />

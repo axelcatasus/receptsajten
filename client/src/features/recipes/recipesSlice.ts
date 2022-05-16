@@ -1,18 +1,27 @@
-import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit'
-// import type { RootState } from '../../app/store'
-import { fetchRecipes, fetchRecipeById, fetchRecipeBySearch, postRating, fetchRecipesByCategoryAndSearch, fetchRecipesByCategory } from '../../api/'
-import { RecipeType } from './recipeTypes'
-// import { useAppSelector } from '../../app/hooks'
+import { createSlice,  createAsyncThunk } from '@reduxjs/toolkit'
+import { fetchRecipes, fetchRecipeById, fetchRecipeBySearch, fetchRecipesByCategoryAndSearch, fetchRecipesByCategory } from '../../api/'
+import { RecipeType} from './recipeTypes'
 
 interface RecipesState {
     recipes: any[],
-    singleRecipe: any
+    singleRecipe: RecipeType
 }
 
 
 const initialState: RecipesState = {
     recipes: [],
-    singleRecipe: {}
+    singleRecipe: {
+        _id: "",
+        title: "",
+        description: "",
+        imageUrl: "",
+        timeinMins: 0,
+        ratings: [0],
+        category: [''],
+        ingredients: [],
+        instructions: [],
+        comments: []
+    }
 }
 
 
@@ -74,7 +83,7 @@ export const recipesSlice = createSlice({
     name: 'recipes',
     initialState,
     reducers: {
-        addSingleRecipeToState: (state, action: PayloadAction<RecipeType>) => {
+        addSingleRecipeToState: (state, action) => {
             state.singleRecipe = action.payload
         }
     },
@@ -85,7 +94,7 @@ export const recipesSlice = createSlice({
         [fetchByIdThunk.fulfilled]: (state, action) => {
             state.singleRecipe = action.payload
         },
-        [fetchRecipesByCategoriesAndSearchThunk.fulfilled.type]: (state, action: PayloadAction<any>) => {
+        [fetchRecipesByCategoriesAndSearchThunk.fulfilled.type]: (state, action) => {
             state.recipes = action.payload
         },
         [fetchRecipesByCategoryThunk.fulfilled]: (state, action) => {
