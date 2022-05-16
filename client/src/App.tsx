@@ -1,8 +1,7 @@
 import React from 'react';
 import './App.css';
-import RecipeList from './components/RecipeList';
-import CategoriesNav from './components/CategoriesNav';
-import RecipesTest from './components/RecipesTest';
+import RecipeList from './features/recipes/RecipeList';
+import CategoriesNav from './features/categories/CategoriesNav';
 import { Outlet, Link } from 'react-router-dom';
 
 

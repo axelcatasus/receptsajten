@@ -14,12 +14,12 @@ export const getCategories = async () => {
     return categories
 }
 
-export const GetRecipesByCategory = async (category: string) => {
+export const getRecipesByCategory = async (category: string) => {
     const recipes = await RecipeModel.find({category: category});
     return recipes;
 }
 
-export const GetRecipesByCategoryAndSearch = async (category: string, search: string) => {
+export const getRecipesByCategoryAndSearch = async (category: string, search: any) => {
     const recipes = await RecipeModel.find({category: category,
         $or: [
             { title: { $regex: search, $options: 'i' } }

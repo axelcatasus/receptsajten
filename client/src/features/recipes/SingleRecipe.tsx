@@ -4,7 +4,9 @@ import { useParams } from 'react-router-dom';
 import Stars from './Stars';
 // import { postRating } from '../api';
 import CommentForm from './CommentForm';
-import { fetchRecipeById } from '../api';
+import { fetchRecipeById } from '../../api';
+import { useAppSelector, useAppDispatch } from "../../app/hooks";
+import { fetchByIdThunk, addSingleRecipeToState } from './recipesSlice';
 
 const StyledRecipe = styled.div`
     display: grid;
@@ -39,32 +41,35 @@ const StyledRecipe = styled.div`
     & .comment-name {
         font-weight: bold;
         margin: 0;
+    } 
+    & .rating-number {
+        font-size: 0.8rem;
     }
 `
 
 const Recipe = () => {
-    const [recipe, setRecipe] = useState<any>({});
+    // const [recipe, setRecipe] = useState<any>({});
     const { id }: any = useParams();
     const [sentComment , setSentComment] = useState(false);
-    const commentSent = () => {
+    const dispatch = useAppDispatch();
+    const commentSent = async () => {
         console.log('comment sent')
-        setSentComment(!sentComment);
-        fetchRecipeById(id).then(recipe => {
-            setRecipe(recipe.data);
-        })
+        // setSentComment(!sentComment);
+        dispatch(fetchByIdThunk(id));
     }
-    // const fetchRecipe = async () => {
-    //     const recipe = await fetch(`http://localhost:3000/recipes/${id}`)
-    //     .then(res => res.json())
-    //     setRecipe(recipe);
-    // }
+  const recipe = useAppSelector(state => state.recipes.singleRecipe);
+  const recipes = useAppSelector(state => state.recipes.recipes);
+
     useEffect(() => {   
-        fetchRecipeById(id).then(recipe => {
-            setRecipe(recipe.data);
-        })
-    // fetchRecipe();
-    // commentSent()
-}, [id]);
+        const foundRecipe = recipes.find(recipe => recipe._id === id)
+        if(!foundRecipe){
+            console.log("fetched")
+            dispatch(fetchByIdThunk(id));
+        } else {
+            console.log('fetched from state')
+            dispatch(addSingleRecipeToState(foundRecipe))
+        }
+},[]);
     return (
         <StyledRecipe>
             <h1>{recipe.title}</h1>
@@ -75,6 +80,7 @@ const Recipe = () => {
                     </p>
                     <div>
                     {recipe.ratings && <Stars edit={true} recipeId={recipe._id} recipeRatings={recipe.ratings} />}
+                    <p className="ratings-number">{recipe.ratings && recipe.ratings.length} omdömen</p>
                     <h3>{recipe.ratings && recipe.ingredients.length} Ingredienser | {recipe.timeinMins} Minuter</h3>
                     </div>
                 <img src={recipe.imageUrl} alt={recipe.title} width="400px"/>
@@ -96,7 +102,7 @@ const Recipe = () => {
             </div>
             <div className='comments'>
                 <h2>Kommentarer</h2>
-                {sentComment ?  <p>Tack för din kommentar!</p> : <CommentForm recipeId={recipe._id} trigger={commentSent} />}
+                <CommentForm recipeId={recipe._id} trigger={commentSent} />
                 <div className="comment-list">
                     {recipe.comments && recipe.comments.map((comment:any) => (
                         <div className="comment" key={comment._id}>

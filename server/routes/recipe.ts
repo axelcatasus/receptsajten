@@ -3,26 +3,7 @@ import { getRecipes, getRecipesBySearch, getRecipesById, pushRatingById, pushCom
 
 const router = express.Router();
 
-// router.get('/', async (req: Request, res: Response) => {
-//     const gottenRecipes = await getRecipes();
-//     res.status(200).json(gottenRecipes);
-// });
 
-// router.get('/search/:query', async (req: Request, res: Response) => {
-//     const gottenRecipes = await getRecipesBySearch(req.params.query);
-//     res.status(200).json(gottenRecipes);
-// });
-
-// router.get("/", async (req, res) => {
-//     const query = req.query
-//     if(Object.keys(query).length > 0){
-//         console.log(query)
-//       if(Object.keys(query).includes("search")){
-//         const recipes = await getRecipesBySearch(query.search)
-//         res.json(recipes)
-//       }
-//     }
-// });
 
 router.get("/", async (req, res) => {
     const query = req.query
@@ -32,8 +13,8 @@ router.get("/", async (req, res) => {
         res.json(recipes)
       }
     } else {
-      const recipes = await getRecipes() 
-      res.json(recipes)
+        const recipes = await getRecipes() 
+        res.json(recipes)
     }
   })
 
@@ -51,7 +32,4 @@ router.post('/:recipeId/comment', async (req: Request, res: Response) => {
     const gottenRecipe = await pushCommentById(req.params.recipeId, req.body.comment);
     res.status(200).json(gottenRecipe);
 });
-
-
-
 export default router
