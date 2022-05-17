@@ -11,6 +11,7 @@ interface StarsProps {
     edit : boolean
     recipeRatings : [number]
     recipeId : string
+    size: number
     }
 
 const calculateAverage = (rating : number[]) => {
@@ -26,11 +27,12 @@ const calculateAverage = (rating : number[]) => {
 const StyledStars = styled(ReactStars)`
     display: flex;
     justify-content: center;
+    margin: 0rem;
 `
 
 const starColor = '#ffc107';
 
-const Stars = ({recipeRatings, recipeId, edit}: StarsProps) => {
+const Stars = ({recipeRatings, recipeId, edit, size}: StarsProps) => {
     const [starToggle, setStarToggle] = useState(true);
     const dispatch = useAppDispatch();
     const ratingChanged = async (newRating: number) => {
@@ -44,7 +46,7 @@ const Stars = ({recipeRatings, recipeId, edit}: StarsProps) => {
     count={5}
     value={calculateAverage(recipeRatings)}
     onChange={ratingChanged}
-    size={40}
+    size={size}
     edit={edit}
     color2={starColor}
     half={false}
