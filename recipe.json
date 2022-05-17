@@ -119,5 +119,109 @@
                 "Häll tillbaka blandningen i en stekpanna och stek i cirka 15 minuter."
             ],
     "comments":[]
-}
+},
+	{
+		"title": "Gambas al Pil Pil",
+		"description": "Gambas al ajillo är en klassisk tapasrätt från Spanien. På svenska kan man säga vitlöksräkor och det är så gott och enkelt att laga hemma! Mitt recept på vitlöksräkor är hämtat från Spanien, bland annat från Málaga där  jag bott i två års tid. Gambas al ajillo är nämligen en av mina favoriträtter från det spanska köket. Efter flera försök har jag nu kommit fram till ett recept som blir lika gott hemma i Sverige. Jag hoppas att det ska smaka och längre ner kan du även läsa mer om historian bakom Gambas al ajillo samt hur rätten serveras i Spanien.",
+		"imageUrl": "https://www.darylskitchen.com/wp-content/uploads/2019/05/IMG_1248.jpg",
+		"timeinMins": 20,
+		"ratings": [],
+		"category": ["Spanien", "Enkel"],
+		"ingredients":
+				[
+						{
+								"ingredient": "räkor",
+								"amount": 800,
+								"unit": "gram"
+						},
+						{
+								"ingredient": "vitlök",
+								"amount": 8,
+								"unit": "klyftor"
+						},
+						{
+								"ingredient": "olivolja",
+								"amount": 2,
+								"unit": "dl"
+						},
+						{
+							"ingredient": "cayennepeppar",
+							"amount": 1,
+							"unit": "tsk"
+						},
+						{
+							"ingredient": "vitt vin",
+							"amount": 5,
+							"unit": "dl"
+						},
+						{
+							"ingredient": "hackad persilja",
+							"amount": 1,
+							"unit": "msk"
+						},
+						{
+								"ingredient": "salt",
+								"amount": null,
+								"unit": ""
+						}
+					],
+		"instructions": [
+			"Häll i olivoljan i en stekpanna och låt den bli varm medans du skalar vitlöken. Har din spis 9 steg, så rekommenderar jag 7 eller läget mellan 7:an och 8:an.",
+			"Skär vitlöken i lagom tunna skivor",
+			"Lägg i vitlöken i stekpannan och låt den steka i 1-2 minuter. Den ska inte bli bränd.",
+			"Häll i cayennepeppar och rör runt. Låt steka i 1-2 minuter.",
+			"Lägg i räkorna och sprinkla över en nypa salt. Stek dem cirka 1 minut på varje sida.",
+			"Häll i vinet och rör runt. Låt det puttra i några minuter på medelhög värme så att alkoholen avdunstar. Ös gärna lite av oljan och vinet från samma stekpanna och häll över räkorna samtidigt som det puttrar.",
+			"Ta av stekpannan från plattan. Blanda i den hackade persiljan och rör runt. Servera räkorna direkt med en rykande het temperatur."
+		],
+		"comments":[]
+	},
+	{
+		"title": "Crème Ninon",
+		"description": "Grön ärtsoppa, även kallad Crème Ninon, är en mycket god soppa som du garanterat kommer att laga flera gånger! Den är smakfull och stilig och passar utmärkt till både vardag och fest!",
+		"imageUrl": "https://cached-images.bonnier.news/bnl01/standard-article/1a8595cf-c3bb-4742-b669-d463bdc424aa/77a1a81b-94cb-4984-bae6-c27ec3cc7053/1x1/0/1920@80.jpg",
+		"timeinMins": 45,
+		"ratings": [],
+		"category": ["Soppa", "Enkel"],
+		"ingredients":
+			[
+				{
+					"ingredient": "frysta gröna ärtor",
+					"amount": 700,
+					"unit": "gram"
+				},
+				{
+					"ingredient": "gul lök",
+					"amount": 1,
+					"unit": ""
+				},
+				{
+					"ingredient": "vitlök",
+					"amount": 2,
+					"unit": "klyftor"
+				},
+				{
+					"ingredient": "olivolja",
+					"amount": 2,
+					"unit": "dl"
+				},
+				{
+					"ingredient": "grönsaksbuljong",
+					"amount": 6,
+					"unit": "dl"
+				},
+				{
+					"ingredient": "citron",
+					"amount": 1,
+					"unit": ""	
+				}
+			],
+		"instructions": [
+			"Hacka löken och vitlöken, fräs snabbt i olja.",
+			"Tillsätt ärtorna och rör om.",
+			"Häll på buljongen, koka upp och låt koka i några minuter.",
+			"Mixa ärtorna och krydda med salt, peppar och citron."
+		],
+		"comments": []
+	}
 ]

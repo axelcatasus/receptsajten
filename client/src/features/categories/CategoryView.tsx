@@ -1,10 +1,21 @@
 import { useEffect } from "react";
 import RecipeCard from "../recipes/RecipeCard";
-import { useParams } from "react-router-dom";
+import { useParams, NavLink } from "react-router-dom";
+import SearchComponent from "../header/SearchComponent";
 import { fetchRecipesByCategoriesAndSearchThunk, fetchRecipesByCategoryThunk } from "../recipes/recipesSlice";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { RecipeType } from "../recipes/recipeTypes";
+import styled from "styled-components";
 
+
+const StyledCategoryView = styled.div`
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 2rem;
+    padding-bottom: 4rem;
+`
 
 
 const CategoryView = () => {
@@ -23,14 +34,11 @@ const CategoryView = () => {
         dispatch(fetchRecipesByCategoryThunk(category));
     }, [dispatch, category]);
     return (
-        <div className="category-view">
-            <h2>{category}</h2>
-            <form onSubmit={(e) => e.preventDefault()}>
-                <input type="text" placeholder={`Sök efter recept i kategorin ${category}`} onChange={(e: React.ChangeEvent<HTMLInputElement>) => onInputChange(e.target.value)} />
-                <button type="submit">Sök</button>
-            </form>
-            {recipes.map((recipe: RecipeType) => <RecipeCard key={recipe._id} recipe={recipe}></RecipeCard> )}
-        </div>
+        <StyledCategoryView>
+            <SearchComponent catSearch={true} category={category} />
+            {recipes.map((recipe: RecipeType) => 
+            <NavLink to={`/recipes/${recipe._id}`}><RecipeCard key={recipe._id} recipe={recipe}></RecipeCard> </NavLink>)}
+        </StyledCategoryView>
     )
     }
     export default CategoryView;

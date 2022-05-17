@@ -10,39 +10,73 @@ import { IngredientType, InstructionType, CommentType } from './recipeTypes';
 const StyledRecipe = styled.div`
     display: grid;
     place-items: center;
-    margin: 0 20rem;
-    padding: 2rem;
-    width: 60%;
-    border: 1px solid black;
+    width: 70vw;
+    background: white;
+    margin: 2rem auto 0 auto;
     border-radius: 5px;
-    background: linear-gradient(lemonchiffon, peru);
-    & .flex {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    .image {
+        width: 100%;
+        overflow: hidden;
+        height: 40rem;
+        background: no-repeat center/cover;
+        display: grid;
+        place-items: center;
+        border-radius: 5px 5px 0 0;
     }
-    & .comments {
-        display: flex;
-        flex-direction: column;
+    & h1 {
+        text-align: center;
+        color: white;
+        text-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        font-family: 'Montserrat';
+        text-transform: uppercase;
+        font-size: 8rem;
     }
-    & .comment {
-        border: 1px solid black;
-        border-radius: 0.5rem;
-        background-color: lemonchiffon;
-        padding: 1rem;
-        margin: .5rem 0;
+    & p {
+        padding: 0rem 2rem;
+        font-family: 'Esteban';
+        font-size: 1.2rem
+    }
+    & li {
+        font-family: 'Esteban';
+        font-size: 1.2rem;
+    }
+    & .ingredients-instructions {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-column-gap: 0rem;
+        margin: 0rem 4rem;
+        margin-bottom: 5rem;
+    }
+    & h2 {
+        font-family: 'Montserrat';
+        text-transform: uppercase;
+        text-align: center;
+    }
+    & .ratings {
+        text-align: center;
+    }
+    & .ratings > * {
+        margin: 0rem 1rem;
+        font-size: 1rem;
     }
     & .comment-list {
         display: flex;
-        flex-direction: column-reverse
+        width: 40rem;
+        flex-direction: column-reverse;
+        gap: 1rem;
+        margin: 1rem 0rem;
+    }
+    & .comment {
+        border-radius: 5px;
+        border: 1px solid black;
+        padding: 1rem;
     }
     & .comment-name {
         font-weight: bold;
-        margin: 0;
-    } 
-    & .rating-number {
-        font-size: 0.8rem;
+    }
+    & .comment > p {
+        padding: 0rem;
     }
 `
 
@@ -52,8 +86,8 @@ const Recipe = () => {
     const commentSent = async () => {
         dispatch(fetchByIdThunk(id));
     }
-  const recipe = useAppSelector(state => state.recipes.singleRecipe);
-  const recipes = useAppSelector(state => state.recipes.recipes);
+    const recipe = useAppSelector(state => state.recipes.singleRecipe);
+    const recipes = useAppSelector(state => state.recipes.recipes);
 
     useEffect(() => {   
         const foundRecipe = recipes.find(recipe => recipe._id === id)
@@ -63,44 +97,51 @@ const Recipe = () => {
             dispatch(addSingleRecipeToState(foundRecipe))
         }
     }, [id, recipes, dispatch]);
-
+    const imageStyle = {
+        backgroundImage: `url(${recipe.imageUrl})`,
+    }
     return (
-        <StyledRecipe>
-            <h1>{recipe.title}</h1>
+        <StyledRecipe className="single">
+            <div className="image" style={imageStyle}>
+                <h1>{recipe.title}</h1>
+            </div>
+            <div className="description">
+                <p>{recipe.description}</p>
+            </div>
             <div>
-                <div className='flex'>
-                    <p>
-                        {recipe.description}
-                    </p>
-                    <div>
-                    {recipe.ratings && <Stars edit={true} recipeId={recipe._id} recipeRatings={recipe.ratings} />}
-                    <p className="ratings-number">{recipe.ratings && recipe.ratings.length} omdömen</p>
-                    <h3>{recipe.ratings && recipe.ingredients.length} Ingredienser | {recipe.timeinMins} Minuter</h3>
-                    </div>
-                <img src={recipe.imageUrl} alt={recipe.title} width="400px"/>
+                <h3>{recipe.ratings && recipe.ingredients.length} Ingredienser | {recipe.timeinMins} Minuter</h3>
+            </div>
+            <div className="ingredients-instructions">
+                <div className="ingredients">
+                    <h2>Ingredienser</h2>
+                    <ul>
+                        {recipe.ingredients && recipe.ingredients.map((ingredient:IngredientType) => (
+                            <li key={ingredient.ingredient}>{ingredient.amount} {ingredient.unit} {ingredient.ingredient}</li>
+                        ))}
+                    </ul>
+            </div>
+                <div className="instructions">
+                    <h2>Instruktioner</h2>
+                    <ol>
+                        {recipe.instructions && recipe.instructions.map((instruction: InstructionType) => (
+                            <li key={instruction.toString()}>{instruction.toString()}</li>
+                        ))}
+                    </ol>
                 </div>
             </div>
-            <div>
-                <h2>Ingredienser</h2>
-                <ul>
-                    {recipe.ingredients && recipe.ingredients.map((ingredient:IngredientType) => (
-                        <li key={ingredient.ingredient}>{ingredient.amount} {ingredient.unit} {ingredient.ingredient}</li>
-                    ))}
-                </ul>
-                <h2>Gör såhär</h2>
-                <ol>
-                    {recipe.instructions && recipe.instructions.map((instruction: InstructionType) => (
-                        <li key={instruction.toString()}>{instruction.toString()}</li>
-                    ))}
-                </ol>
-            </div>
             <div className='comments'>
-                <h2>Kommentarer</h2>
+                <div className='ratings'>
+                    {recipe.ratings && <Stars edit={true} recipeId={recipe._id} recipeRatings={recipe.ratings} size={80} />}
+                    {recipe.ratings.length && <p className="ratings-average">{Math.round(recipe.ratings.reduce((a,b) => a + b, 0) / recipe.ratings.length * 100 + Number.EPSILON) / 100}/5</p>}
+                    {recipe.ratings.length > 1 && <p className="ratings-count">({recipe.ratings.length} omdömen)</p>}
+                    {recipe.ratings.length === 1 && <p className="ratings-count">({recipe.ratings.length} omdöme)</p>}
+                    {!recipe.ratings.length && <p className="ratings-count">Inga omdömen än!</p>}
+                </div>
                 <CommentForm recipeId={recipe._id} trigger={commentSent} />
                 <div className="comment-list">
                     {recipe.comments && recipe.comments.map((comment:CommentType) => (
                         <div className="comment" key={comment._id}>
-                            <h4 className="comment-name">{comment.name}</h4>
+                            <p className="comment-name">{comment.name}</p>
                             <p>{comment.commentBody}</p>
                             <p>{comment.createdAt}</p>
                         </div>
