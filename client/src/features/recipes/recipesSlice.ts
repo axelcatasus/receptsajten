@@ -75,10 +75,6 @@ export const fetchRecipesByCategoriesAndSearchThunk: any = createAsyncThunk(
     }
 )
 
-
-
-
-
 export const recipesSlice = createSlice({
     name: 'recipes',
     initialState,

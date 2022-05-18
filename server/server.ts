@@ -30,7 +30,7 @@ res.send ('Hello World!')
 app.use('/recipes', recipeRouter)
 app.use('/category', categoryRouter)
 
-const path = require('path')
+import path from 'path'
 
 app.use(express.static(path.resolve(__dirname, "./client/build")));
 app.get("*", function (request, response) {
