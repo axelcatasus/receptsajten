@@ -1,2 +1,0 @@
-1. Fixa typning i interface KLAR
-2. Visa antal recept i varje kategori
