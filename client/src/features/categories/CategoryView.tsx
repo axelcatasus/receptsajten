@@ -6,7 +6,6 @@ import { fetchRecipesByCategoryThunk } from "../recipes/recipesSlice";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { RecipeType } from "../recipes/recipeTypes";
 import styled from "styled-components";
-import { AnimatePresence } from "framer-motion";
 
 
 const StyledCategoryView = styled.div`
