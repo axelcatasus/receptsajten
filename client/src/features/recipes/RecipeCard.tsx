@@ -1,13 +1,13 @@
 import styled from "styled-components";
 import Stars from "./Stars";
-import {Link} from "react-router-dom";
 import { RecipeType } from "./recipeTypes";
+import { motion } from "framer-motion";
 
 interface RecipeCardProps {
     recipe: RecipeType;
 }
 
-const StyledRecipeCard = styled.div`
+const StyledRecipeCard = styled(motion.div)`
     display: grid;
     grid-template-columns: 3fr repeat(2, 1fr);
     grid-template-rows: 1fr;
@@ -77,7 +77,10 @@ const RecipeCard = ({recipe}: RecipeCardProps) => {
         backgroundImage: `url(${recipe.imageUrl})`,
     }
     return (
-    <StyledRecipeCard>
+    <StyledRecipeCard
+        initial={{ opacity: 0.5, x: -100 }}
+        animate={{ opacity: 1, x: 0 }}
+        >
         <div className="image" style={imageStyle}>
             <h1>{recipe.title}</h1>
         </div>

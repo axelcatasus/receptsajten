@@ -60,7 +60,7 @@ const schema = new Schema<RecipeType>({
     comments: {
         type: [
             {
-                commentBody: String,
+                comment: String,
                 name: String,
                 createdAt: String,
             }

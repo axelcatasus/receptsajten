@@ -6,13 +6,15 @@ import CommentForm from './CommentForm';
 import { useAppSelector, useAppDispatch } from "../../app/hooks";
 import { fetchByIdThunk, addSingleRecipeToState } from './recipesSlice';
 import { IngredientType, InstructionType, CommentType } from './recipeTypes';
+import { motion } from 'framer-motion';
 
 const StyledRecipe = styled.div`
     display: grid;
     place-items: center;
     width: 70vw;
     background: white;
-    margin: 2rem auto 0 auto;
+    height: 100%;
+    margin: 2rem auto 0rem auto;
     border-radius: 5px;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     .image {
@@ -83,9 +85,6 @@ const StyledRecipe = styled.div`
 const Recipe = () => {
     const { id } = useParams();
     const dispatch = useAppDispatch();
-    const commentSent = async () => {
-        dispatch(fetchByIdThunk(id));
-    }
     const recipe = useAppSelector(state => state.recipes.singleRecipe);
     const recipes = useAppSelector(state => state.recipes.recipes);
 
@@ -101,7 +100,7 @@ const Recipe = () => {
         backgroundImage: `url(${recipe.imageUrl})`,
     }
     return (
-        <StyledRecipe className="single">
+        <StyledRecipe>
             <div className="image" style={imageStyle}>
                 <h1>{recipe.title}</h1>
             </div>
@@ -137,14 +136,19 @@ const Recipe = () => {
                     {recipe.ratings.length === 1 && <p className="ratings-count">({recipe.ratings.length} omdöme)</p>}
                     {!recipe.ratings.length && <p className="ratings-count">Inga omdömen än!</p>}
                 </div>
-                <CommentForm recipeId={recipe._id} trigger={commentSent} />
+                <CommentForm recipeId={recipe._id} />
                 <div className="comment-list">
                     {recipe.comments && recipe.comments.map((comment:CommentType) => (
-                        <div className="comment" key={comment._id}>
+                        <motion.div 
+                            className="comment"
+                            key={comment._id}
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                        >
                             <p className="comment-name">{comment.name}</p>
-                            <p>{comment.commentBody}</p>
+                            <p>{comment.comment}</p>
                             <p>{comment.createdAt}</p>
-                        </div>
+                        </motion.div>
                     ))}
                 </div>
             </div>

@@ -57,10 +57,10 @@ const CategoriesNav = () => {
             {categories && 
                 categories.map((category: any) => 
                     <ul className="categories">
-                        <li key={category._id} className={splitPath === category._id ? 'active' : '' }>
-                        <NavLink to={`/category/${category._id}`} >
+                        <li key={category.name} className={splitPath === category.name ? 'active' : '' }>
+                        <NavLink to={`/category/${category.name}`} >
                         {/* <NavLink to={`/category/${category._id}`} style={({ isActive }) => ({ color: isActive ? 'gray' : 'black',})} > */}
-                            {category._id} ({category.count})
+                            {category.name} ({category.count})
                         </NavLink>
                         </li>
                     </ul>)}

@@ -1,6 +1,6 @@
 export interface CommentType {
     _id: string;
-    commentBody: string;
+    comment: string;
     name: string;
     createdAt: string;
 }

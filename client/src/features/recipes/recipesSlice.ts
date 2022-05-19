@@ -1,6 +1,6 @@
 import { createSlice,  createAsyncThunk } from '@reduxjs/toolkit'
 import { fetchRecipes, fetchRecipeById, fetchRecipeBySearch, fetchRecipesByCategoryAndSearch, fetchRecipesByCategory } from '../../api/'
-import { RecipeType} from './recipeTypes'
+import { RecipeType } from './recipeTypes'
 
 interface RecipesState {
     recipes: any[],
@@ -44,8 +44,7 @@ export const fetchByIdThunk: any = createAsyncThunk(
     'recipes/fetchById',
     async (id: string ) => {
         const recipe = await fetchRecipeById(id)
-        return recipe.data
-        
+        return recipe.data 
     }
 )   
 
@@ -81,6 +80,9 @@ export const recipesSlice = createSlice({
     reducers: {
         addSingleRecipeToState: (state, action) => {
             state.singleRecipe = action.payload
+        },
+        addCommentToSingleRecipe: (state, action) => {
+            state.singleRecipe.comments.push(action.payload)
         }
     },
     extraReducers: {
@@ -95,12 +97,11 @@ export const recipesSlice = createSlice({
         },
         [fetchRecipesByCategoryThunk.fulfilled]: (state, action) => {
             state.recipes = action.payload
-        }
-        
+        }   
     }
-
 })
 
 export const { addSingleRecipeToState } = recipesSlice.actions
+export const { addCommentToSingleRecipe } = recipesSlice.actions
 
 export default recipesSlice.reducer

@@ -3,7 +3,6 @@ import { useAppSelector, useAppDispatch } from "../../app/hooks";
 import { fetchRecipesThunk } from "../../features/recipes/recipesSlice";
 import RecipeCard from "./RecipeCard";
 import { RecipeType } from "./recipeTypes";
-import CategoriesNav from "../categories/CategoriesNav";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
@@ -13,7 +12,7 @@ const StyledRecipeList = styled.div`
     flex-direction: column;
     align-items: center;
     margin-top: 4rem;
-    padding-bottom: 4rem;
+    padding-bottom: 2rem;
 `
 
 const RecipeList = () => {    

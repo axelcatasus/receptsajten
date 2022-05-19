@@ -5,9 +5,14 @@ export const getCategories = async () => {
         { $match: {} },
         { $unwind: '$category' },
         { $group: { _id: '$category', count: { $sum: 1 } } },
-        { $sort: { count: -1 } }
-    ]);
-    return categories
+        { $sort: { count: -1 } },
+    ], );
+    for (let category of categories) {
+        category.name = category._id;
+        delete category._id;
+    }
+
+    return categories;
 }
 
 export const getRecipesByCategory = async (category: string) => {
