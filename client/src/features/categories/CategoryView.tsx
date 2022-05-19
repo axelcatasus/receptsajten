@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import RecipeCard from "../recipes/RecipeCard";
 import { useParams, NavLink } from "react-router-dom";
 import SearchComponent from "../header/SearchComponent";
-import { fetchRecipesByCategoriesAndSearchThunk, fetchRecipesByCategoryThunk } from "../recipes/recipesSlice";
+import { fetchRecipesByCategoryThunk } from "../recipes/recipesSlice";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { RecipeType } from "../recipes/recipeTypes";
 import styled from "styled-components";
@@ -22,13 +22,13 @@ const CategoryView = () => {
     const { category } = useParams();
     const dispatch = useAppDispatch();
     const recipes = useAppSelector(state => state.recipes.recipes);
-    let onInputChange = (query: string) => {
-        const payload = {
-            category: category,
-            query: query
-        }
-        dispatch(fetchRecipesByCategoriesAndSearchThunk(payload))
-    }
+    // let onInputChange = (query: string) => {
+    //     const payload = {
+    //         category: category,
+    //         query: query
+    //     }
+    //     dispatch(fetchRecipesByCategoriesAndSearchThunk(payload))
+    // }
     
     useEffect(() => {
         dispatch(fetchRecipesByCategoryThunk(category));

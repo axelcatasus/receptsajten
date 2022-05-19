@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import React, { useState } from "react";
 import { postComment } from "../../api";
-import { useAppSelector, useAppDispatch } from "../../app/hooks";
+import { useAppDispatch } from "../../app/hooks";
 import { addCommentToSingleRecipe } from "./recipesSlice";
 
 const StyledCommentForm = styled.form`

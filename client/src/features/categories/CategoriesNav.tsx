@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import styled from "styled-components";
 import { NavLink, useLocation } from "react-router-dom";
 import { fetchCategoriesThunk } from "./categoriesSlice";
@@ -44,7 +44,6 @@ const CategoriesNav = () => {
     console.log(splitPath)
     const dispatch = useAppDispatch();
     const categories = useAppSelector(state => state.categories.categories);
-    const [showCategories, setShowCategories] = useState(false);
 
     useEffect(() => {
         dispatch(fetchCategoriesThunk());

@@ -1,5 +1,4 @@
 import ReactStars from 'react-stars'
-import React from 'react'
 import styled from 'styled-components'
 import { useState} from 'react';
 import { postRating } from '../../api/index';
