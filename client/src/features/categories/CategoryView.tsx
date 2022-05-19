@@ -1,11 +1,12 @@
 import { useEffect } from "react";
 import RecipeCard from "../recipes/RecipeCard";
-import { useParams, NavLink } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import SearchComponent from "../header/SearchComponent";
 import { fetchRecipesByCategoryThunk } from "../recipes/recipesSlice";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { RecipeType } from "../recipes/recipeTypes";
 import styled from "styled-components";
+import { AnimatePresence } from "framer-motion";
 
 
 const StyledCategoryView = styled.div`
@@ -36,8 +37,12 @@ const CategoryView = () => {
     return (
         <StyledCategoryView>
             <SearchComponent catSearch={true} category={category} />
-            {recipes.map((recipe: RecipeType) => 
-            <NavLink to={`/recipes/${recipe._id}`}><RecipeCard key={recipe._id} recipe={recipe}></RecipeCard> </NavLink>)}
+            {recipes.map((recipe: RecipeType) =>
+                <RecipeCard 
+                    recipe={recipe}
+                    key={recipe._id}
+                />
+            )}
         </StyledCategoryView>
     )
     }

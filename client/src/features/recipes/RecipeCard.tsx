@@ -1,10 +1,12 @@
 import styled from "styled-components";
 import Stars from "./Stars";
 import { RecipeType } from "./recipeTypes";
+import { NavLink } from "react-router-dom";
 import { motion } from "framer-motion";
 
 interface RecipeCardProps {
     recipe: RecipeType;
+    isVisible?: boolean;
 }
 
 const StyledRecipeCard = styled(motion.div)`
@@ -77,25 +79,24 @@ const RecipeCard = ({recipe}: RecipeCardProps) => {
         backgroundImage: `url(${recipe.imageUrl})`,
     }
     return (
-    <StyledRecipeCard
-        initial={{ opacity: 0.5, x: -100 }}
-        animate={{ opacity: 1, x: 0 }}
-        >
-        <div className="image" style={imageStyle}>
-            <h1>{recipe.title}</h1>
-        </div>
-        <div className="center">
-            <p>{recipe.ingredients.length} Ingredienser | {recipe.timeinMins} Minuter</p>
-            <p className="comments">{recipe.comments.length} kommentarer</p>
-        </div>
-        <div className="ratings-container">
-            <Stars recipeRatings={recipe.ratings} recipeId={recipe._id} edit={false} size={40}/>
-            {recipe.ratings.length && <p className="ratings-average">{Math.round(recipe.ratings.reduce((a,b) => a + b, 0) / recipe.ratings.length * 100 + Number.EPSILON) / 100}/5</p>}
-            {recipe.ratings.length > 1 && <p className="ratings-count">({recipe.ratings.length} omdömen)</p>}
-            {recipe.ratings.length === 1 && <p className="ratings-count">({recipe.ratings.length} omdöme)</p>}
-            {!recipe.ratings.length && <p className="ratings-count">Inga omdömen än!</p>}
-        </div>
-    </StyledRecipeCard>
+    <NavLink to={`/recipes/${recipe._id}`}>
+        <StyledRecipeCard>
+                <div className="image" style={imageStyle}>
+                    <h1>{recipe.title}</h1>
+                </div>
+                <div className="center">
+                    <p>{recipe.ingredients.length} Ingredienser | {recipe.timeinMins} Minuter</p>
+                    <p className="comments">{recipe.comments.length} kommentarer</p>
+                </div>
+                <div className="ratings-container">
+                    <Stars recipeRatings={recipe.ratings} recipeId={recipe._id} edit={false} size={40}/>
+                    {recipe.ratings.length && <p className="ratings-average">{Math.round(recipe.ratings.reduce((a,b) => a + b, 0) / recipe.ratings.length * 100 + Number.EPSILON) / 100}/5</p>}
+                    {recipe.ratings.length > 1 && <p className="ratings-count">({recipe.ratings.length} omdömen)</p>}
+                    {recipe.ratings.length === 1 && <p className="ratings-count">({recipe.ratings.length} omdöme)</p>}
+                    {!recipe.ratings.length && <p className="ratings-count">Inga omdömen än!</p>}
+                </div>
+        </StyledRecipeCard>
+    </NavLink>
     )
 }
 

@@ -3,9 +3,9 @@ import { useAppSelector, useAppDispatch } from "../../app/hooks";
 import { fetchRecipesThunk } from "../../features/recipes/recipesSlice";
 import RecipeCard from "./RecipeCard";
 import { RecipeType } from "./recipeTypes";
-import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { motion } from "framer-motion";
+
 
 const StyledRecipeList = styled(motion.div)`
     width: 100%;
@@ -25,14 +25,13 @@ const RecipeList = () => {
 
     return (
         <StyledRecipeList>
-            {recipes.map((recipe: RecipeType)=> 
-            <NavLink to={`/recipes/${recipe._id}`}>
-                    <RecipeCard 
-                        key={recipe._id}
-                        recipe={recipe}
-                    />
-            </NavLink >)}
-        </StyledRecipeList>
+                {recipes.map((recipe: RecipeType)=>
+                            <RecipeCard 
+                                recipe={recipe}
+                                key={recipe._id}
+                            />
+                )}
+            </StyledRecipeList>
     )
     }
 export default RecipeList;
