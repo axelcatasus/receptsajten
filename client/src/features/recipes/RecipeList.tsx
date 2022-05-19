@@ -5,8 +5,9 @@ import RecipeCard from "./RecipeCard";
 import { RecipeType } from "./recipeTypes";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
+import { motion } from "framer-motion";
 
-const StyledRecipeList = styled.div`
+const StyledRecipeList = styled(motion.div)`
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -26,7 +27,10 @@ const RecipeList = () => {
         <StyledRecipeList>
             {recipes.map((recipe: RecipeType)=> 
             <NavLink to={`/recipes/${recipe._id}`}>
-                <RecipeCard key={recipe._id} recipe={recipe} />
+                    <RecipeCard 
+                        key={recipe._id}
+                        recipe={recipe}
+                    />
             </NavLink >)}
         </StyledRecipeList>
     )
