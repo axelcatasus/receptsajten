@@ -1,10 +1,6 @@
 import axios from "axios"
-import dotenv from "dotenv"
 
-dotenv.config()
-
-axios.defaults.baseURL = `${process.env.REACT_APP_API_URL}`
-// axios.defaults.baseURL = "http://localhost:3000"
+axios.defaults.baseURL = `${process.env.REACT_APP_API_BASE_URL}`
 export async function fetchRecipes(){
     try{
       const response = await axios.get('/recipes')
