@@ -7,6 +7,8 @@ import { useAppSelector, useAppDispatch } from "../../app/hooks";
 import { fetchByIdThunk, addSingleRecipeToState } from './recipesSlice';
 import { IngredientType, InstructionType, CommentType } from './recipeTypes';
 import { motion } from 'framer-motion';
+import { useMediaQuery } from 'react-responsive';
+
 
 const StyledRecipe = styled.div`
     display: grid;
@@ -80,6 +82,26 @@ const StyledRecipe = styled.div`
     & .comment > p {
         padding: 0rem;
     }
+    @media (max-width: 768px) {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-bottom: 2rem;
+        .image {
+            height: 15rem;
+        }
+        h1 {
+            font-size: 3rem;
+        }
+        .ingredients-instructions {
+            display: flex;
+            flex-direction: column;
+        }
+        .comment-list {
+            width: 90vw;
+        }
+    }
 `
 
 const Recipe = () => {
@@ -87,7 +109,7 @@ const Recipe = () => {
     const dispatch = useAppDispatch();
     const recipe = useAppSelector(state => state.recipes.singleRecipe);
     const recipes = useAppSelector(state => state.recipes.recipes);
-
+    const isMobile = useMediaQuery({ maxWidth: 768 });
     useEffect(() => {   
         const foundRecipe = recipes.find(recipe => recipe._id === id)
         if(!foundRecipe){
@@ -130,7 +152,8 @@ const Recipe = () => {
             </div>
             <div className='comments'>
                 <div className='ratings'>
-                    {recipe.ratings && <Stars edit={true} recipeId={recipe._id} recipeRatings={recipe.ratings} size={80} />}
+                    {!isMobile && recipe.ratings && <Stars edit={true} recipeId={recipe._id} recipeRatings={recipe.ratings} size={80} />}
+                    {isMobile && recipe.ratings && <Stars edit={true} recipeId={recipe._id} recipeRatings={recipe.ratings} size={60} />}
                     {recipe.ratings.length && <p className="ratings-average">{Math.round(recipe.ratings.reduce((a,b) => a + b, 0) / recipe.ratings.length * 100 + Number.EPSILON) / 100}/5</p>}
                     {recipe.ratings.length > 1 && <p className="ratings-count">({recipe.ratings.length} omdömen)</p>}
                     {recipe.ratings.length === 1 && <p className="ratings-count">({recipe.ratings.length} omdöme)</p>}

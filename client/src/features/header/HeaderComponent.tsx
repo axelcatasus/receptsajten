@@ -2,6 +2,7 @@ import styled from "styled-components"
 import { NavLink } from "react-router-dom"
 import SearchComponent from "./SearchComponent"
 import CategoriesNav from "../categories/CategoriesNav"
+import { useMediaQuery } from "react-responsive"
 
 const StyledHeader = styled.header`
     font-family: 'Montserrat';
@@ -20,11 +21,12 @@ const StyledHeader = styled.header`
 `
 
 const Header = () => {
+    const isMobile = useMediaQuery({ maxWidth: 767 })
     return (
         <StyledHeader>
             <NavLink className="heading" to="/"><h1>RECEPTSAJTEN</h1></NavLink>
-            <CategoriesNav />
-            <SearchComponent catSearch={false}/>
+            {!isMobile && <CategoriesNav />}
+            {!isMobile && <SearchComponent catSearch={false}/>}
         </StyledHeader>
     )
 }

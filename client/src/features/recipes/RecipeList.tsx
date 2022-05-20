@@ -14,6 +14,9 @@ const StyledRecipeList = styled(motion.div)`
     align-items: center;
     margin-top: 4rem;
     padding-bottom: 2rem;
+    @media (max-width: 1440px) {
+        margin-top: 1rem;
+    }
 `
 
 const RecipeList = () => {    
@@ -25,13 +28,14 @@ const RecipeList = () => {
 
     return (
         <StyledRecipeList>
-                {recipes.map((recipe: RecipeType)=>
-                            <RecipeCard 
-                                recipe={recipe}
-                                key={recipe._id}
-                            />
-                )}
-            </StyledRecipeList>
+            {recipes.map((recipe: RecipeType)=>
+                <RecipeCard 
+                    recipe={recipe}
+                    key={recipe._id}
+                />
+            )}
+            {!recipes.length && <h1>Inga recept hittades!</h1>}
+        </StyledRecipeList>
     )
     }
 export default RecipeList;

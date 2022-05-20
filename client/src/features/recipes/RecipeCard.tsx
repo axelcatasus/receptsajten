@@ -10,6 +10,21 @@ interface RecipeCardProps {
 }
 
 const StyledRecipeCard = styled(motion.div)`
+    @media (max-width: 1440px) {
+        width: 90vw;
+    }
+    @media (max-width: 1000px) {
+        grid-template-columns: 3fr 2fr;
+        & .ratings-container {
+            display: none;
+        }
+    }
+
+    :hover {
+        box-shadow: rgba(0, 0, 0, 0.5) 0px 5px 15px;
+        transition: box-shadow 0.3s ease-in-out;
+    }
+
     display: grid;
     grid-template-columns: 3fr repeat(2, 1fr);
     grid-template-rows: 1fr;
@@ -24,6 +39,7 @@ const StyledRecipeCard = styled(motion.div)`
     background: linear-gradient(white, #e6e6e6);
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     padding: 0rem;
+    transition: box-shadow 0.3s ease-in-out;
     & h1 {
         text-align: center;
         font-family: 'Montserrat', serif;
@@ -53,11 +69,6 @@ const StyledRecipeCard = styled(motion.div)`
         background-repeat: no-repeat;
         border-radius: 6px 0px 0px 6px;
         background-position: left 20% center;
-        transition: all ease 1500ms;
-    }
-    & .image:hover {
-        background-size: 120%;
-        transition: all ease-in 2000ms;
     }
     & .image h1 {
         padding-left: 1rem;

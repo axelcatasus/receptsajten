@@ -42,6 +42,7 @@ const CategoryView = () => {
                     key={recipe._id}
                 />
             )}
+            {!recipes.length && <h1>Inga recept hittades!</h1>}
         </StyledCategoryView>
     )
     }

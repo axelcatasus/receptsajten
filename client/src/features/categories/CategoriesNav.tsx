@@ -41,7 +41,6 @@ const StyledNav = styled.div`
 const CategoriesNav = () => {
     const location = useLocation();
     const splitPath = location.pathname.split("/")[2];
-    console.log(splitPath)
     const dispatch = useAppDispatch();
     const categories = useAppSelector(state => state.categories.categories);
 
@@ -51,20 +50,16 @@ const CategoriesNav = () => {
 
     return (
         <StyledNav>
-            {/* {!showCategories && <h3 className="nav-item" onClick={() => setShowCategories(!showCategories)}>Kategorier ▼</h3>}
-            {showCategories && <h3 className="nav-item" onClick={() => setShowCategories(!showCategories)}>Kategorier ▲</h3>} */}
-            {categories && 
-                categories.map((category: any) => 
+            {categories && categories.map((category: any) => 
                     <ul className="categories">
                         <li key={category.name} className={splitPath === category.name ? 'active' : '' }>
                         <NavLink to={`/category/${category.name}`} >
-                        {/* <NavLink to={`/category/${category._id}`} style={({ isActive }) => ({ color: isActive ? 'gray' : 'black',})} > */}
                             {category.name} ({category.count})
                         </NavLink>
                         </li>
                     </ul>)}
         </StyledNav>
-            )
+        )
 }
 
 export default CategoriesNav
